@@ -44,7 +44,7 @@ opt.showcmd = true
 opt.expandtab = true
 opt.smartindent = true
 opt.showmode = true
-opt.scrolloff = 8
+opt.scrolloff = 4
 opt.sidescrolloff = 8
 opt.clipboard = "unnamedplus"
 opt.splitbelow = true
@@ -56,10 +56,11 @@ opt.timeoutlen = 300
 opt.linebreak = true
 
 wpt.signcolumn = "yes"
-wpt.fillchars = "eob: "
+wpt.fillchars = "eob: ,vert:█"
+wpt.conceallevel = 2
 
 -- If plugins are disabled, use this theme 😄
--- vim.cmd("colorscheme habamax")
+vim.cmd("colorscheme habamax")
 vim.cmd("filetype plugin on")
 
 -- ╭────────────────╮
@@ -172,24 +173,9 @@ if gpt.neovide then
     gpt.neovide_cursor_vfx_mode = "wireframe"
 end
 
--- ╭──────────────────╮
--- │ LazyNvim plugins │
--- ╰──────────────────╯
-
--- Comment to disable all plugins and colorschemes
-require("plugs.lazy")
-
 -- ╭───────────────────────────────────────────────────╮
 -- │ Vanilla statuslines, because lualine is for nerds │
 -- ╰───────────────────────────────────────────────────╯
--- Load after plugins to ensure colors work correctly
-
-vim.cmd("hi ActiveBuffer guibg=#AC526B guifg=white")
-vim.cmd("hi GuiElements guibg=#393B44 guifg=#AC526B")
-vim.cmd("hi GuiLogo guibg=#C4CCD8 guifg=#AC526B")
-vim.cmd("hi GitStatus guibg=#C4CCD8 guifg=#393B44")
-vim.cmd("hi GuiInvert guibg=#AC526B guifg=white")
-vim.cmd("hi BufSeparator guibg=#393B44 guifg=#FDBB44")
 
 local function set_status(args)
     local buffs = {}
@@ -198,36 +184,31 @@ local function set_status(args)
         local fname = vim.fn.fnamemodify(v.name, ":t")
         if not no_list_buffs[fname] then
             if v.bufnr == args.buf then
-                fname = "%#ActiveBuffer# " .. fname .. " %*"
+                fname = " " .. fname .. " %*"
             end
             table.insert(buffs, fname)
         end
     end
-
     local function gitbranch()
         local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
         if string.len(branch) > 0 then
-            return "󰊢 " .. branch
+            return " 󰊢 " .. branch
         else
             return " "
         end
     end
 
-    opt.statusline = " "
-        .. ""
-        .. "%#GuiLogo#"
-        .. "   "
-        .. "%*"
-        .. "%#GitStatus#"
+    opt.statusline = "█"
+        .. ""
+        .. "  "
         .. gitbranch()
-        .. "%*█▓▒░ "
+        .. " █▓▒░ "
         .. "%*%="
-        .. "%#BufSeparator# ♦️ %*"
-        .. table.concat(buffs, "%#BufSeparator# ♦️ %*")
-        .. "%#BufSeparator# ♦️ %*"
+        .. "♦️ %*"
+        .. table.concat(buffs, " ♦️ %*")
+        .. " ♦️ %*"
         .. "%="
-        .. "%#GuiElements#"
-        .. " "
+        .. ""
         .. "%*"
         .. " %y "
         .. " At:"
@@ -256,6 +237,13 @@ opt.winbar = "%#GuiElements# "
     .. "%m"
     .. "%#GuiElements#"
     .. "█▓▒░ "
+
+-- ╭──────────────────╮
+-- │ LazyNvim plugins │
+-- ╰──────────────────╯
+
+-- Comment to disable all plugins and colorschemes
+require("plugs.lazy")
 
 -- ╭──────────╮
 -- │ Modeline │

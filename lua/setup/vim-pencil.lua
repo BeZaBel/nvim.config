@@ -11,5 +11,6 @@ return {
                 vim.cmd("PencilHard")
             end,
         })
+        vim.keymap.set("n", "<leader>tp", "<CMD>PencilToggle<CR>", { desc = "Toggle Pencil" })
     end,
 }
