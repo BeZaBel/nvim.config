@@ -253,9 +253,9 @@ opt.winbar = "%#GuiElements# "
     .. "%#GuiInvert#"
     .. "  "
     .. "%f "
+    .. "%m"
     .. "%#GuiElements#"
     .. "█▓▒░ "
-    .. "%m"
 
 -- ╭──────────╮
 -- │ Modeline │
