@@ -1,11 +1,5 @@
 return {
     setup = function()
-        vim.api.nvim_buf_set_keymap(0, "n", "<leader><Enter>", "<Plug>RDSendLine", {})
-        vim.api.nvim_buf_set_keymap(0, "v", "<leader><Enter>", "<Plug>RSendSelection", {})
-        -- vim.g.R_app = "radian"
-        -- vim.g.R_cmd = "R"
-        -- vim.g.R_hl_term = 0
-        -- vim.g.R_bracketed_paste = 1
         local opts = {
             R_args = { "--quiet", "--no-save" },
             rconsole_width = 78,
@@ -26,5 +20,8 @@ return {
 
         require("r").setup(opts)
         require("cmp_r").setup({})
+
+        vim.api.nvim_buf_set_keymap(0, "n", "<leader><Enter>", "<Plug>RDSendLine", {})
+        vim.api.nvim_buf_set_keymap(0, "v", "<leader><Enter>", "<Plug>RSendSelection", {})
     end,
 }

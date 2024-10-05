@@ -27,9 +27,6 @@ require("lazy").setup({
 		import = "plugs.base",
 	},
 	{
-		import = "plugs.colors",
-	},
-	{
 		import = "plugs.completion",
 	},
 	{

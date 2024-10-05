@@ -25,9 +25,8 @@ return {
             delete_to_trash = false,
             watch_for_changes = true,
         })
-        local map = vim.keymap.set
         local oil = require("oil")
-        map({ "n" }, "<leader>l", function()
+        vim.keymap.set({ "n" }, "<leader>l", function()
             oil.open()
         end, { desc = "Open Oil" })
     end,
