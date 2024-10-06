@@ -18,9 +18,15 @@ return {
         config = require("setup.which-key").setup,
     },
     {
+        "maxmx03/dracula.nvim",
+        lazy = false,
+        priority = 1000,
+        config = require("setup.dracula").setup,
+    },
+    {
         "catppuccin/nvim",
         name = "catppuccin",
-        lazy = false,
+        lazy = true,
         priority = 1000,
         config = function()
             require("setup.catppuccin").setup("mocha")

@@ -215,7 +215,7 @@ local function set_status()
     vim.cmd([[hi 4thStatus guibg=#00cf97 guifg=#161616]])
     vim.cmd([[hi 4TriStatus guibg=#acfa70 guifg=#00cf97]])
     vim.cmd([[hi 5thStatus guibg=#acfa70 guifg=#161616]])
-    vim.cmd([[hi 5TriStatus guibg=#161616 guifg=#acfa70]])
+    vim.cmd([[hi 5TriStatus guibg=#262833 guifg=#acfa70]])
 
     opt.statusline = "%#BaseStatus#"
         .. " ☭ "
@@ -253,7 +253,7 @@ local set_winbar = function()
     vim.cmd([[hi 1stWin guibg=#acfa70 guifg=#161616]])
     vim.cmd([[hi 1TriWin guibg=#00cf97 guifg=#acfa70]])
     vim.cmd([[hi 2ndWin guibg=#00cf97 guifg=#161616]])
-    vim.cmd([[hi 2TriWin guibg=#161616 guifg=#00cf97]])
+    vim.cmd([[hi 2TriWin guibg=#262833 guifg=#00cf97]])
 
     opt.winbar = "%#1stWin#"
         .. "  %n: "
