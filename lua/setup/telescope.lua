@@ -81,15 +81,18 @@ return {
         map("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
         map("n", "<C-A-b>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
         map("n", "<leader>/", function()
-            require("telescope.builtin").current_buffer_fuzzy_find()
-            --[[ require("telescope.themes").get_ivy({
-                    winblend = 0,
-                    previewer = true,
-                }) ]]
+            require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+                winblend = 0,
+                previewer = true,
+            }))
         end, { desc = "[/] Fuzzily search in current buffer" })
         map("n", "<C-A-m>", "<cmd>Telescope emoji<CR>", { desc = "Open telescope emoji" })
         map("n", "<C-A-n>", "<cmd>Telescope notify<cr>", { desc = "Open notifications in telescope" })
-        map("n", "<C-A-f>", require("telescope.builtin").find_files, { desc = "Find file in directory" })
+        map("n", "<C-A-f>", function()
+            require("telescope.builtin").find_files(require("telescope.themes").get_dropdown({
+                previewer = true,
+            }))
+        end, { desc = "Find file in directory" })
         -- live_grep integration
         map("n", "<leader>s/", telescope_live_grep_open_files, { desc = "[S]earch [/] in Open Files" })
         map("n", "<leader>qg", require("telescope.builtin").git_files, { desc = "Search [G]it [F]iles" })
