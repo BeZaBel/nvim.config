@@ -77,8 +77,4 @@ return {
         },
         config = require("setup.cmp").setup,
     },
-    {
-        "numToStr/Comment.nvim",
-        opts = {},
-    },
 }

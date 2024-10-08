@@ -26,15 +26,6 @@ return {
         end,
     },
     {
-        "mfussenegger/nvim-dap",
-        dependencies = {
-            "nvim-neotest/nvim-nio",
-            "rcarriga/nvim-dap-ui",
-            "theHamsta/nvim-dap-virtual-text",
-        },
-        config = require("setup.dap").setup,
-    },
-    {
         "lervag/vimtex",
         ft = "tex",
         config = require("setup.vimtex").setup,

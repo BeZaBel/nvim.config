@@ -18,8 +18,33 @@ return {
         config = require("setup.which-key").setup,
     },
     {
-        "maxmx03/dracula.nvim",
+        "lunarvim/synthwave84.nvim",
         lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd.colorscheme("synthwave84")
+        end,
+    },
+    {
+        "maxmx03/fluoromachine.nvim",
+        lazy = true,
+        priority = 1000,
+        config = function()
+            -- fluoromachine, retrowave, delta
+            require("setup.fluoromachine").setup("retrowave")
+        end,
+    },
+    {
+        "samharju/synthweave.nvim",
+        lazy = true,
+        priority = 1000,
+        config = function()
+            -- vim.cmd.colorscheme("synthweave-transparent")
+        end,
+    },
+    {
+        "maxmx03/dracula.nvim",
+        lazy = true,
         priority = 1000,
         config = require("setup.dracula").setup,
     },
