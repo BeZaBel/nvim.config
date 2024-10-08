@@ -67,7 +67,7 @@ gpt.netrw_altv = 1
 -- ╭──────────────────────────────╮
 -- │ Gui configurations (neovide) │
 -- ╰──────────────────────────────╯
-opt.guifont = "Iosevka Nerd Font Mono:h14"
+opt.guifont = "Iosevka Nerd Font Mono:h11"
 gpt.neovide_padding_top = 10
 gpt.neovide_padding_left = 10
 gpt.neovide_padding_right = 10
