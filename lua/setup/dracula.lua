@@ -16,6 +16,6 @@ return {
             },
         })
         vim.cmd.colorscheme("dracula")
-        vim.cmd([[hi Normal ctermbg=NONE guibg=NONE]])
+        -- vim.cmd([[hi Normal ctermbg=NONE guibg=NONE]])
     end,
 }

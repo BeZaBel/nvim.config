@@ -36,13 +36,13 @@ opt.formatoptions = "t"
 opt.foldmethod = "manual"
 opt.incsearch = true
 opt.wrap = true
-opt.tabstop = 4
-opt.shiftwidth = 4
 opt.fileencoding = "utf-8"
 opt.pumheight = 12
 opt.laststatus = 3
 opt.showcmd = true
+opt.tabstop = 4
 opt.expandtab = true
+opt.shiftwidth = 4
 opt.smartindent = true
 opt.showmode = true
 opt.scrolloff = 4
@@ -55,6 +55,8 @@ opt.completeopt = "menuone,noselect"
 opt.timeout = true
 opt.timeoutlen = 300
 opt.linebreak = true
+opt.list = true
+opt.listchars = "leadmultispace:...."
 wpt.signcolumn = "yes"
 wpt.fillchars = "eob: ,vert:│"
 
@@ -114,6 +116,7 @@ map("i", "{;", "{};<left><left>")
 map("i", "(;", "();<left><left>")
 map("i", "/*", "/**/<left><left>")
 map("i", "_", "__<left>")
+map("i", "`", "``<left>")
 map("i", "**", "****<left><left>")
 
 -- ╭────────────────╮
