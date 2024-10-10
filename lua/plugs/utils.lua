@@ -6,11 +6,6 @@ return {
         end,
     },
     {
-        "antonk52/markdowny.nvim",
-        ft = "markdown",
-        config = require("setup.markdowny").setup,
-    },
-    {
         "epwalsh/obsidian.nvim",
         version = "*",
         lazy = true,
@@ -35,10 +30,5 @@ return {
         dependencies = { "R-nvim/cmp-r" },
         ft = "r",
         config = require("setup.rnvim").setup,
-    },
-    {
-        "lewis6991/gitsigns.nvim",
-        lazy = false,
-        config = require("setup.gitsigns").setup,
     },
 }

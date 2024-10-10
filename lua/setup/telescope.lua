@@ -1,6 +1,5 @@
 local extensions = {
     fuzzy = "fzf",
-    emoji = "emoji",
 }
 
 return {
@@ -25,15 +24,7 @@ return {
                     },
                 },
             },
-            extensions = {
-                emoji = {
-                    action = function(emoji)
-                        vim.fn.setreg("+", emoji.value)
-                        print([[Press p or " + + to paste this emoji]] .. emoji.value)
-                        vim.api.nvim_put({ emoji.value }, "c", false, true)
-                    end,
-                },
-            },
+            extensions = {},
         })
 
         for i, value in pairs(extensions) do
@@ -86,7 +77,6 @@ return {
                 previewer = true,
             }))
         end, { desc = "[/] Fuzzily search in current buffer" })
-        map("n", "<C-A-m>", "<cmd>Telescope emoji<CR>", { desc = "Open telescope emoji" })
         map("n", "<C-A-n>", "<cmd>Telescope notify<cr>", { desc = "Open notifications in telescope" })
         map("n", "<C-A-f>", function()
             require("telescope.builtin").find_files(require("telescope.themes").get_dropdown({

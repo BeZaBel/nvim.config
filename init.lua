@@ -104,7 +104,6 @@ map("n", "<C-A-w>", "<cmd>bd<cr>", { desc = "Move to next buffer" })
 
 -- ╭──────────────────────────────────────────────────────╮
 -- │ Automatically close brackets, parethesis, and quotes │
--- │ Not needed if using autopairs plugin                 │
 -- ╰──────────────────────────────────────────────────────╯
 map("i", "'", "''<left>")
 map("i", '"', '""<left>')
@@ -112,7 +111,10 @@ map("i", "(", "()<left>")
 map("i", "[", "[]<left>")
 map("i", "{", "{}<left>")
 map("i", "{;", "{};<left><left>")
+map("i", "(;", "();<left><left>")
 map("i", "/*", "/**/<left><left>")
+map("i", "_", "__<left>")
+map("i", "**", "****<left><left>")
 
 -- ╭────────────────╮
 -- │ Open terminals │

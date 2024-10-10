@@ -13,12 +13,20 @@ return {
         dependencies = {
             "williamboman/mason-lspconfig.nvim",
             "WhoIsSethDaniel/mason-tool-installer.nvim",
-            "folke/neodev.nvim",
         },
         config = require("setup.mason").setup,
     },
     {
         "nvimdev/lspsaga.nvim",
         config = require("setup.lspsaga").setup,
+    },
+    {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                { path = "luvit-meta/library", words = { "vim%.uv" } },
+            },
+        },
     },
 }

@@ -15,7 +15,7 @@ return {
                 ["bufferline.nvim"] = true,
             },
         })
-        -- vim.cmd.colorscheme("dracula")
-        -- vim.cmd([[hi Normal ctermbg=NONE guibg=NONE]])
+        vim.cmd.colorscheme("dracula")
+        vim.cmd([[hi Normal ctermbg=NONE guibg=NONE]])
     end,
 }
