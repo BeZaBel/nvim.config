@@ -27,7 +27,7 @@ return {
     -- },
     -- {
     --     "maxmx03/fluoromachine.nvim",
-    --     lazy = true,
+    --     lazy = false,
     --     priority = 1000,
     --     config = function()
     --         -- fluoromachine, retrowave, delta
@@ -51,7 +51,7 @@ return {
     -- {
     --     "catppuccin/nvim",
     --     name = "catppuccin",
-    --     lazy = true,
+    --     lazy = false,
     --     priority = 1000,
     --     config = function()
     --         require("setup.catppuccin").setup("mocha")

@@ -1,18 +1,21 @@
 return {
     setup = function()
-        local rd = require("rainbow-delimiters")
+        local rainbow_delimiters = require("rainbow-delimiters")
         vim.g.rainbow_delimiters = {
             strategy = {
-                [""] = rd.strategy["global"],
-                vim = rd.strategy["local"],
+                [""] = rainbow_delimiters.strategy["global"],
+                vim = rainbow_delimiters.strategy["local"],
+                c = rainbow_delimiters.strategy["global"],
             },
             query = {
                 [""] = "rainbow_delimiters",
                 lua = "rainbow-blocks",
+                c = "rainbow-delimiters",
             },
             priority = {
                 [""] = 110,
                 lua = 210,
+                c = 210,
             },
             highlight = {
                 "RainbowDelimiterRed",
@@ -23,6 +26,7 @@ return {
                 "RainbowDelimiterBlue",
                 "RainbowDelimiterViolet",
             },
+            blacklist = {},
         }
     end,
 }

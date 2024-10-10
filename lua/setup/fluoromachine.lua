@@ -21,6 +21,6 @@ return {
             },
         })
 
-        -- vim.cmd.colorscheme("fluoromachine")
+        vim.cmd.colorscheme("fluoromachine")
     end,
 }
