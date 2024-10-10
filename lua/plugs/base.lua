@@ -9,11 +9,6 @@ return {
         config = require("setup.treesitter").setup,
     },
     {
-        "nvim-treesitter/nvim-treesitter-context",
-        event = { "BufReadPre", "BufNewFile" },
-        config = require("setup.context").setup,
-    },
-    {
         "nvim-tree/nvim-web-devicons",
         config = function()
             require("nvim-web-devicons").setup()
@@ -72,8 +67,6 @@ return {
             "saadparwaiz1/cmp_luasnip",
             "rafamadriz/friendly-snippets",
             "onsails/lspkind.nvim",
-            "chrisgrieser/cmp-nerdfont",
-            "hrsh7th/cmp-calc",
         },
         config = require("setup.cmp").setup,
     },

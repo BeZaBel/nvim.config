@@ -9,6 +9,9 @@
 -- ╭──────────────────────────────────────╮
 -- │ Basic settings, remaps and utilities │
 -- ╰──────────────────────────────────────╯
+vim.cmd([[filetype plugin on]])
+vim.cmd([[packadd termdebug]])
+
 local gpt = vim.g
 local opt = vim.o
 local wpt = vim.wo
