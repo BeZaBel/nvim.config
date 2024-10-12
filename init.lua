@@ -56,7 +56,7 @@ opt.timeout = true
 opt.timeoutlen = 300
 opt.linebreak = true
 opt.list = true
-opt.listchars = "leadmultispace:...."
+opt.listchars = "leadmultispace:│⋅⋅⋅"
 wpt.signcolumn = "yes"
 wpt.fillchars = "eob: ,vert:│"
 
@@ -99,10 +99,9 @@ map("n", "<leader>fss", ":w ", { desc = "Save as" })
 -- ╭─────────────────────────────────────────────╮
 -- │ Buffer and splits management and navigation │
 -- ╰─────────────────────────────────────────────╯
-map("n", "<leader>W", "<CMD>bd!<CR>")
+map("n", "<leader>W", "<CMD>bd!<CR>", { desc = "Remove current buffer" })
 map("n", "<C-A-k>", "<cmd>bprev<cr>", { desc = "Move to previous buffer" })
 map("n", "<C-A-j>", "<cmd>bnext<cr>", { desc = "Move to next buffer" })
-map("n", "<C-A-w>", "<cmd>bd<cr>", { desc = "Move to next buffer" })
 
 -- ╭──────────────────────────────────────────────────────╮
 -- │ Automatically close brackets, parethesis, and quotes │
@@ -115,9 +114,10 @@ map("i", "{", "{}<left>")
 map("i", "{;", "{};<left><left>")
 map("i", "(;", "();<left><left>")
 map("i", "/*", "/**/<left><left>")
-map("i", "_", "__<left>")
-map("i", "`", "``<left>")
-map("i", "**", "****<left><left>")
+map("i", "<C-i>", "__<left>")
+map("i", "<C-S-c>", "``<left>")
+map("i", "<C-b>", "****<left><left>")
+map("i", "<C-S-b>", "```<Enter>```<Up>")
 
 -- ╭────────────────╮
 -- │ Open terminals │
@@ -162,8 +162,8 @@ map("v", "<C-j>", ":m '>+1<cr>gv=gv", { noremap = true, silent = true })
 -- ╭─────────────────────╮
 -- │ Move in insert mode │
 -- ╰─────────────────────╯
-map("i", "<A-k>", "<C-o>a", { noremap = true })
-map("i", "<A-j>", "<C-o>h", { noremap = true })
+map("i", "<C-k>", "<right>", { noremap = true })
+map("i", "<C-j>", "<left>", { noremap = true })
 
 -- ╭────────────────────────────────────────╮
 -- │ Replace all instances of selected word │
