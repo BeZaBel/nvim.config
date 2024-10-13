@@ -1,5 +1,14 @@
 return {
     {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                { path = "luvit-meta/library", words = { "vim%.uv" } },
+            },
+        },
+    },
+    {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         event = { "BufReadPre", "BufNewFile" },
@@ -15,10 +24,6 @@ return {
         end,
     },
     {
-        "stevearc/dressing.nvim",
-        event = "VeryLazy",
-    },
-    {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
         dependencies = {
@@ -28,24 +33,6 @@ return {
             },
         },
         config = require("setup.telescope").setup,
-    },
-    {
-        "folke/noice.nvim",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            {
-                "rcarriga/nvim-notify",
-                opts = {
-                    timeout = 100,
-                    fps = 60,
-                    max_width = 40,
-                    render = "default",
-                    top_down = true,
-                    stages = "fade",
-                },
-            },
-        },
-        config = require("setup.noice").setup,
     },
     {
         "nvim-lua/plenary.nvim",
@@ -64,5 +51,32 @@ return {
             "onsails/lspkind.nvim",
         },
         config = require("setup.cmp").setup,
+    },
+    {
+        "neovim/nvim-lspconfig",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            { "antosha417/nvim-lsp-file-operations", config = true },
+        },
+        config = require("setup.lspconf").setup,
+    },
+    {
+        "williamboman/mason.nvim",
+        dependencies = {
+            "williamboman/mason-lspconfig.nvim",
+            "WhoIsSethDaniel/mason-tool-installer.nvim",
+        },
+        config = require("setup.mason").setup,
+    },
+    {
+        "nvimdev/lspsaga.nvim",
+        config = require("setup.lspsaga").setup,
+    },
+    {
+        "stevearc/oil.nvim",
+        opts = {},
+        dependencies = { "echasnovski/mini.icons" },
+        config = require("setup.oil").setup,
     },
 }

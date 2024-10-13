@@ -63,6 +63,15 @@ return {
                 { name = "cmp_r" },
                 { name = "nvim_lua" },
             },
+            window = {
+                documentation = {
+                    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+                },
+                completion = {
+                    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+                    winhighlight = "Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None",
+                },
+            },
             formatting = {
                 format = lspkind.cmp_format({
                     maxwidth = 50,

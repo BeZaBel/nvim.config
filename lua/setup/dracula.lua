@@ -11,7 +11,6 @@ return {
                 ["gitsigns.nvim"] = true,
                 ["lazy.nvim"] = true,
                 ["telescope.nvim"] = true,
-                ["noice.nvim"] = true,
                 ["bufferline.nvim"] = true,
             },
         })
