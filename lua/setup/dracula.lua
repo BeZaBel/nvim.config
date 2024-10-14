@@ -8,7 +8,6 @@ return {
                 ["nvim-cmp"] = true,
                 ["indent-blankline.nvim"] = true,
                 ["which-key.nvim"] = true,
-                ["gitsigns.nvim"] = true,
                 ["lazy.nvim"] = true,
                 ["telescope.nvim"] = true,
                 ["bufferline.nvim"] = true,

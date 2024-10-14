@@ -1,7 +1,7 @@
 local servers = require("setup.lspservers")
 
 return {
-    setup = function ()
+    setup = function()
         vim.g.LanguageClient_serverCommands = {
             r = { "R", "--slave", "-e", "languageserver::run()" },
         }
@@ -9,8 +9,6 @@ return {
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
         local map = vim.keymap.set
         local opts = { noremap = true, silent = true }
-        -- Telescope Integration
-        -- Called only when an LSP server connects to a buffer
         local on_attach = function(client, bufnr)
             local telescopecmd = require("telescope.builtin")
 
@@ -47,7 +45,6 @@ return {
             map("n", "<leader>rs", ":LspRestart<CR>", opts)
             opts.desc = "[G]oto [D]eclaration"
             map("n", "gD", vim.lsp.buf.declaration, opts)
-
         end
 
         require("lazydev").setup()
@@ -58,7 +55,7 @@ return {
         capabilities.workspace = {
             didChangeWatchedFiles = {
                 dynamicRegistration = true,
-            }
+            },
         }
 
         local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
@@ -79,5 +76,5 @@ return {
                 })
             end,
         })
-    end
+    end,
 }

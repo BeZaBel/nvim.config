@@ -1,11 +1,10 @@
 return {
     setup = function()
-        local cmp = require("cmp")
         local luasnip = require("luasnip")
+        local lspkind = require("lspkind")
+        local cmp = require("cmp")
 
         luasnip.config.setup({})
-        local lspkind = require("lspkind")
-
         require("luasnip.loaders.from_vscode").lazy_load()
 
         cmp.setup({
@@ -60,8 +59,8 @@ return {
                 { name = "luasnip" },
                 { name = "buffer" },
                 { name = "path" },
-                { name = "cmp_r" },
                 { name = "nvim_lua" },
+                { name = "cmp_r" },
             },
             window = {
                 documentation = {

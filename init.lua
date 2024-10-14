@@ -20,6 +20,7 @@ local map = vim.keymap.set
 
 gpt.mapleader = " "
 gpt.maplocalleader = " "
+gpt.have_nerd_font = true
 opt.colorcolumn = "80"
 opt.path = "**"
 opt.syntax = "on"
@@ -42,10 +43,9 @@ opt.tabstop = 4
 opt.expandtab = true
 opt.shiftwidth = 4
 opt.smartindent = true
-opt.showmode = true
+opt.showmode = false
 opt.scrolloff = 4
 opt.sidescrolloff = 8
-opt.clipboard = "unnamedplus"
 opt.splitbelow = true
 opt.splitright = true
 opt.termguicolors = true
@@ -53,10 +53,15 @@ opt.completeopt = "menuone,noselect"
 opt.timeout = true
 opt.timeoutlen = 300
 opt.linebreak = true
+opt.breakindent = true
 opt.list = true
-opt.listchars = "leadmultispace:│   "
+opt.listchars = "leadmultispace:│   ,trail:·,nbsp:␣"
 wpt.signcolumn = "yes"
 wpt.fillchars = "eob: ,vert:│"
+
+vim.schedule(function()
+    opt.clipboard = "unnamedplus"
+end)
 
 -- ╭────────────────────────────────────╮
 -- │ Netrw (Disabled if using oil.nvim) │
@@ -92,9 +97,8 @@ map("i", "<C-j>", "<left>", { noremap = true })
 -- ╰─────────────────╯
 map("n", "<leader>fs", vim.cmd.w, { desc = "Save file" })
 map("n", "<leader>fq", vim.cmd.quit, { desc = "Exit vim" })
-map("n", "<leader>fn", vim.cmd.enew, { desc = "New file" })
-map("n", "<leader>fsq", vim.cmd.wq, { desc = "Save and quit" })
-map("n", "<leader>fss", ":w ", { desc = "Save as" })
+map("n", "<leader>fn", vim.cmd.tabnew, { desc = "New file" })
+map("n", "<leader>fa", ":w ", { desc = "Save as" })
 
 -- ╭─────────────────────────────────────────────╮
 -- │ Buffer and splits management and navigation │
@@ -114,10 +118,16 @@ map("i", "{", "{}<left>")
 map("i", "{;", "{};<left><left>")
 map("i", "(;", "();<left><left>")
 map("i", "/*", "/**/<left><left>")
-map("i", "<C-i>", "__<left>")
-map("i", "<C-S-c>", "``<left>")
-map("i", "<C-b>", "****<left><left>")
-map("i", "<C-S-b>", "```<Enter>```<Up>")
+map("i", "<A-q>", "__<left>", { noremap = true })
+map("i", "<A-w>", "``<left>")
+map("i", "<A-e>", "****<left><left>")
+map("i", "<C-b>", "```<Enter>```<Up>")
+map("n", "<C-A-m>", "i- [ ] ")
+map("i", "<C-A-m>", "- [ ] ")
+
+map("v", "<C-b>", "\"hy:'<,'>s/<C-r>h/**<C-r>h**/g<cr>")
+map("v", "<C-i>", "\"hy:'<,'>s/<C-r>h/_<C-r>h_/g<cr>")
+map("v", "<A-k>", "\"hy:'<,'>s/<C-r>h/`<C-r>h`/g<cr>")
 
 -- ╭────────────────╮
 -- │ Open terminals │
@@ -129,7 +139,7 @@ map("n", "<leader>]", function()
     vim.cmd("70vsplit +term")
 end, { desc = "Open vertical term" })
 map("n", "<leader>[", function()
-    vim.cmd("8split +term")
+    vim.cmd("10split +term")
 end, { desc = "Open horizontal term" })
 map("n", "<C-A-g>", function()
     vim.cmd("term lazygit")
@@ -168,7 +178,7 @@ instances of selected word]],
 })
 
 -- Open netrw
-map("n", "<leader><C-l>", "<CMD>15Lex<CR>")
+map("n", "<leader>le", "<CMD>20Lex<CR>")
 
 -- ╭───────────────────╮
 -- │ Highlight on yank │
@@ -208,26 +218,7 @@ local function set_status()
         end
     end
 
-    vim.cmd([[hi BaseStatus guibg=#161821 guifg=#ffffff]])
-    vim.cmd([[hi 1stStatus guibg=#292f56 guifg=#ffffff]])
-    vim.cmd([[hi 2ndStatus guibg=#006290 guifg=#ffffff]])
-    vim.cmd([[hi 3rdStatus guibg=#0097a3 guifg=#161616]])
-    vim.cmd([[hi 4thStatus guibg=#00cf97 guifg=#161616]])
-    vim.cmd([[hi 5thStatus guibg=#acfa70 guifg=#161616]])
-
-    opt.statusline = "%#5thStatus#"
-        .. " ☭ "
-        .. "%#4thStatus#"
-        .. gitbranch()
-        .. "%#3rdStatus#"
-        .. " %y"
-        .. " %F %m "
-        .. "%#2ndStatus#"
-        .. " Row: %l/%L "
-        .. " Col: %v "
-        .. "%#1stStatus#"
-        .. " %p%% "
-        .. "%#BaseStatus#"
+    opt.statusline = " ☭ " .. gitbranch() .. " %y" .. " %F %m " .. " Row: %l/%L " .. " Col: %v " .. " %p%% "
 end
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
@@ -256,13 +247,132 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     {
-        import = "plugs.base",
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                { path = "luvit-meta/library", words = { "vim%.uv" } },
+            },
+        },
     },
     {
-        import = "plugs.ui",
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+        },
+        config = require("setup.treesitter").setup,
     },
     {
-        import = "plugs.utils",
+        "nvim-tree/nvim-web-devicons",
+        config = function()
+            require("nvim-web-devicons").setup()
+        end,
+    },
+    {
+        "nvim-telescope/telescope.nvim",
+        branch = "0.1.x",
+        dependencies = {
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build = "make",
+            },
+        },
+        config = require("setup.telescope").setup,
+    },
+    {
+        "nvim-lua/plenary.nvim",
+    },
+    {
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+        dependencies = {
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-nvim-lua",
+            "hrsh7th/cmp-nvim-lsp",
+            "L3MON4D3/LuaSnip",
+            "saadparwaiz1/cmp_luasnip",
+            "rafamadriz/friendly-snippets",
+            "onsails/lspkind.nvim",
+            -- "R-nvim/cmp-r",
+        },
+        config = require("setup.cmp").setup,
+    },
+    {
+        "neovim/nvim-lspconfig",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            { "antosha417/nvim-lsp-file-operations", config = true },
+        },
+        config = require("setup.lspconf").setup,
+    },
+    {
+        "williamboman/mason.nvim",
+        dependencies = {
+            "williamboman/mason-lspconfig.nvim",
+            "WhoIsSethDaniel/mason-tool-installer.nvim",
+        },
+        config = require("setup.mason").setup,
+    },
+    {
+        "stevearc/oil.nvim",
+        opts = {},
+        dependencies = { "echasnovski/mini.icons" },
+        config = require("setup.oil").setup,
+    },
+    {
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        opts = {},
+        keys = require("setup.flash").keys,
+        config = require("setup.flash").setup,
+    },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        config = require("setup.which-key").setup,
+    },
+    {
+        "HiPhish/rainbow-delimiters.nvim",
+        lazy = false,
+        priority = 1000,
+        event = "BufEnter",
+        config = require("setup.rainbow-delimiters").setup,
+    },
+    {
+        "maxmx03/dracula.nvim",
+        lazy = false,
+        priority = 1000,
+        config = require("setup.dracula").setup,
+    },
+    {
+        "stevearc/conform.nvim",
+        config = function()
+            require("setup.conform").setup()
+        end,
+    },
+    {
+        "kylechui/nvim-surround",
+        version = "*",
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup()
+        end,
+    },
+    {
+        "lervag/vimtex",
+        ft = "tex",
+        config = require("setup.vimtex").setup,
+    },
+    {
+        "R-nvim/R.nvim",
+        version = "~0.1.0",
+        dependencies = { "R-nvim/cmp-r" },
+        ft = "r",
+        config = require("setup.rnvim").setup,
     },
 }, {
     change_detection = {

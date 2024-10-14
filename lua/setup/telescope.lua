@@ -77,7 +77,6 @@ return {
                 previewer = true,
             }))
         end, { desc = "[/] Fuzzily search in current buffer" })
-        map("n", "<C-A-n>", "<cmd>Telescope notify<cr>", { desc = "Open notifications in telescope" })
         map("n", "<C-A-f>", function()
             require("telescope.builtin").find_files(require("telescope.themes").get_dropdown({
                 previewer = true,
