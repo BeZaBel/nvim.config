@@ -24,7 +24,6 @@ gpt.have_nerd_font = true
 opt.colorcolumn = "80"
 opt.path = "**"
 opt.syntax = "on"
-opt.backup = true
 opt.number = true
 opt.relativenumber = true
 opt.mouse = "a"
@@ -350,6 +349,8 @@ require("lazy").setup({
     },
     {
         "stevearc/conform.nvim",
+        event = { "BufWritePre" },
+        cmd = { "ConformInfo" },
         config = function()
             require("setup.conform").setup()
         end,
