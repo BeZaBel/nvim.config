@@ -64,11 +64,12 @@ return {
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
 
-        local mason_lspconfig = require("mason-lspconfig")
+        local lspconfig = require("lspconfig")
 
+        local mason_lspconfig = require("mason-lspconfig")
         mason_lspconfig.setup_handlers({
             function(server_name)
-                require("lspconfig")[server_name].setup({
+                lspconfig[server_name].setup({
                     capabilities = capabilities,
                     on_attach = on_attach,
                     settings = servers[server_name],

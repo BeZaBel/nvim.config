@@ -9,9 +9,9 @@
 -- ╭──────────────────────────────────────╮
 -- │ Basic settings, remaps and utilities │
 -- ╰──────────────────────────────────────╯
-vim.cmd([[filetype plugin on]])
-vim.cmd([[packadd termdebug]])
-vim.cmd("colorscheme sorbet")
+vim.cmd("filetype plugin on")
+vim.cmd("packadd termdebug")
+-- vim.cmd("colorscheme sorbet")
 
 local gpt = vim.g
 local opt = vim.o
@@ -24,7 +24,7 @@ gpt.have_nerd_font = true
 opt.colorcolumn = "80"
 opt.path = "**"
 opt.syntax = "on"
-opt.backup = false
+opt.backup = true
 opt.number = true
 opt.relativenumber = true
 opt.mouse = "a"
@@ -56,6 +56,7 @@ opt.linebreak = true
 opt.breakindent = true
 opt.list = true
 opt.listchars = "leadmultispace:│   ,trail:·,nbsp:␣"
+opt.updatetime = 500
 wpt.signcolumn = "yes"
 wpt.fillchars = "eob: ,vert:│"
 
@@ -218,7 +219,7 @@ local function set_status()
         end
     end
 
-    opt.statusline = " ☭ " .. gitbranch() .. " %y" .. " %F %m " .. " Row: %l/%L " .. " Col: %v " .. " %p%% "
+    opt.statusline = "  " .. gitbranch() .. " %y" .. " %F %m " .. " Row: %l/%L " .. " Col: %v " .. " %p%% "
 end
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
@@ -305,7 +306,6 @@ require("lazy").setup({
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
-            { "antosha417/nvim-lsp-file-operations", config = true },
         },
         config = require("setup.lspconf").setup,
     },
@@ -343,7 +343,7 @@ require("lazy").setup({
         config = require("setup.rainbow-delimiters").setup,
     },
     {
-        "maxmx03/dracula.nvim",
+        "Mofiqul/dracula.nvim",
         lazy = false,
         priority = 1000,
         config = require("setup.dracula").setup,
