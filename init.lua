@@ -164,8 +164,8 @@ end, { desc = "Move to lower heading" })
 -- ╭────────────╮
 -- │ Move lines │
 -- ╰────────────╯
-map("n", "<C-k>", "<CMD>m .-2<CR>==", { noremap = true })
-map("n", "<C-j>", "<CMD>m .+1<CR>==", { noremap = true })
+map("n", "<C-k>", "<CMD>m-2<CR>", { noremap = true })
+map("n", "<C-j>", "<CMD>m+1<CR>", { noremap = true })
 map("v", "<C-k>", ":m '<-2<cr>gv=gv", { noremap = true, silent = true })
 map("v", "<C-j>", ":m '>+1<cr>gv=gv", { noremap = true, silent = true })
 
