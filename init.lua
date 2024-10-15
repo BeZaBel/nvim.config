@@ -342,11 +342,25 @@ require("lazy").setup({
         config = require("setup.rainbow-delimiters").setup,
     },
     {
-        "Mofiqul/dracula.nvim",
+        "rebelot/kanagawa.nvim",
         lazy = false,
         priority = 1000,
-        config = require("setup.dracula").setup,
+        config = function()
+            require("kanagawa").setup({
+                compile = true,
+                undercurl = true,
+                -- wave, dragon, lotus
+                theme = "wave",
+            })
+            vim.cmd.colorscheme("kanagawa")
+        end,
     },
+    -- {
+    --     "Mofiqul/dracula.nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     config = require("setup.dracula").setup,
+    -- },
     {
         "stevearc/conform.nvim",
         event = { "BufWritePre" },
