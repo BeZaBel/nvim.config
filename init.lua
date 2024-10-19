@@ -218,7 +218,7 @@ local function set_status()
         end
     end
 
-    opt.statusline = "  " .. gitbranch() .. " %y" .. " %F %m " .. " Row: %l/%L " .. " Col: %v " .. " %p%% "
+    opt.statusline = "  " .. gitbranch() .. " %y" .. " %F %m " .. "%=" .. " Row: %l/%L " .. " Col: %v " .. " %p%% "
 end
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
@@ -348,11 +348,8 @@ require("lazy").setup({
         config = function()
             require("kanagawa").setup({
                 compile = true,
-                undercurl = true,
-                -- wave, dragon, lotus
-                theme = "wave",
             })
-            vim.cmd.colorscheme("kanagawa")
+            require("setup.kanagawa").setup()
         end,
     },
     -- {

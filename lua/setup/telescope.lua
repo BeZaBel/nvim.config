@@ -72,15 +72,10 @@ return {
         map("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
         map("n", "<C-A-b>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
         map("n", "<leader>/", function()
-            require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-                winblend = 0,
-                previewer = true,
-            }))
+            require("telescope.builtin").current_buffer_fuzzy_find()
         end, { desc = "[/] Fuzzily search in current buffer" })
         map("n", "<C-A-f>", function()
-            require("telescope.builtin").find_files(require("telescope.themes").get_dropdown({
-                previewer = true,
-            }))
+            require("telescope.builtin").find_files()
         end, { desc = "Find file in directory" })
         -- live_grep integration
         map("n", "<leader>s/", telescope_live_grep_open_files, { desc = "[S]earch [/] in Open Files" })
