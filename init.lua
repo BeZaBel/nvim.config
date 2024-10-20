@@ -178,7 +178,7 @@ instances of selected word]],
 })
 
 -- Open netrw
-map("n", "<leader>le", "<CMD>20Lex<CR>")
+-- map("n", "<leader>le", "<CMD>20Lex<CR>")
 
 -- ╭───────────────────╮
 -- │ Highlight on yank │
