@@ -386,6 +386,10 @@ require("lazy").setup({
         ft = "r",
         config = require("setup.rnvim").setup,
     },
+    {
+        "NvChad/nvim-colorizer.lua",
+        opts = {},
+    },
 }, {
     change_detection = {
         notify = false,

@@ -1,6 +1,7 @@
 return {
     setup = function()
         require("kanagawa").setup({
+            transparent = true,
             undercurl = true,
             colors = {
                 theme = {

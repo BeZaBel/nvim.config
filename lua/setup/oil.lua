@@ -3,10 +3,10 @@ return {
         require("oil").setup({
             default_file_explorer = true,
             columns = {
+                -- "permissions",
+                -- "size",
+                -- "mtime",
                 "icon",
-                "permissions",
-                "size",
-                "mtime",
             },
             buf_options = {
                 buflisted = false,
@@ -19,8 +19,7 @@ return {
                 foldcolumn = "0",
                 spell = false,
                 list = false,
-                conceallevel = 3,
-                concealcursor = "nvic",
+                -- concealcursor = "nvic",
             },
             delete_to_trash = false,
             watch_for_changes = true,
