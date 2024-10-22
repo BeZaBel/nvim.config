@@ -218,12 +218,24 @@ local function set_status()
         end
     end
 
-    opt.statusline = "  " .. gitbranch() .. " %y" .. " %F %m " .. "%=" .. " Row: %l/%L " .. " Col: %v " .. " %p%% "
+    opt.statusline = "  " .. gitbranch() .. " %y" .. " %F " .. "%=" .. " Row: %l/%L " .. " Col: %v " .. " %p%% "
 end
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
     group = vim.api.nvim_create_augroup("BufStatusLine", {}),
     callback = set_status,
+})
+
+-- ╭────────╮
+-- │ Winbar │
+-- ╰────────╯
+local set_winbar = function()
+    opt.winbar = "  %t %m"
+end
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    group = vim.api.nvim_create_augroup("BufWinbar", {}),
+    callback = set_winbar,
 })
 
 -- ╭──────────────╮
@@ -390,6 +402,52 @@ require("lazy").setup({
         "NvChad/nvim-colorizer.lua",
         opts = {},
     },
+    {
+        "ej-shafran/compile-mode.nvim",
+        -- version = "v5.*",
+        branch = "nightly",
+        dependencies = {
+            { "m00qek/baleia.nvim", tag = "v1.3.0" },
+        },
+        config = function()
+            vim.g.compile_mode = {
+                baleia_setup = true,
+            }
+        end,
+    },
+    {
+        "folke/noice.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            {
+                "rcarriga/nvim-notify",
+                opts = {
+                    timeout = 100,
+                    fps = 60,
+                    max_width = 40,
+                    render = "default",
+                    top_down = true,
+                    stages = "fade",
+                },
+            },
+        },
+        config = require("setup.noice").setup,
+    },
+    {
+        "stevearc/dressing.nvim",
+        event = "VeryLazy",
+    },
+    {
+        "MeanderingProgrammer/render-markdown.nvim",
+        -- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
+        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+        ft = "markdown",
+        dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+        config = require("setup.rendermarkdown").setup,
+    },
+    "HakonHarnes/img-clip.nvim",
+    event = "VeryLazy",
+    opts = {},
 }, {
     change_detection = {
         notify = false,

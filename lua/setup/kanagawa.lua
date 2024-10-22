@@ -1,7 +1,7 @@
 return {
     setup = function()
         require("kanagawa").setup({
-            transparent = true,
+            transparent = false,
             undercurl = true,
             colors = {
                 theme = {
@@ -16,7 +16,7 @@ return {
                 local theme = colors.theme
                 return {
                     CursorLineNr = { bg = theme.ui.bg_p2, bold = true },
-                    NormalFloat = { bg = "none" },
+                    -- NormalFloat = { bg = "none" },
                     FloatBorder = { bg = "none" },
                     FloatTitle = { bg = "none" },
                     NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
