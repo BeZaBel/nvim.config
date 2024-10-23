@@ -36,7 +36,7 @@ return {
                 }
             end,
             -- wave, dragon, lotus
-            vim.cmd.colorscheme("kanagawa-lotus"),
+            vim.cmd.colorscheme("kanagawa-wave"),
         })
     end,
 }
