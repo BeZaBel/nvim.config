@@ -205,38 +205,20 @@ vim.api.nvim_create_autocmd("filetype", {
     end,
 })
 
--- ╭──────────────────────────────────────────────────╮
--- │ Vanilla statusline, because lualine is for nerds │
--- ╰──────────────────────────────────────────────────╯
+-- ╭────────────────────╮
+-- │ Vanilla statusline │
+-- ╰────────────────────╯
 local function set_status()
-    local function gitbranch()
-        local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-        if string.len(branch) > 0 then
-            return " 󰊢 " .. branch .. " "
-        else
-            return " "
-        end
-    end
-
-    opt.statusline = "  " .. gitbranch() .. " %y" .. " %F " .. "%=" .. " Row: %l/%L " .. " Col: %v " .. " %p%% "
+    local parts = { " %y", " %F ", "%=", " Row: %l/%L ", " Col: %v ", " %p%% " }
+    return table.concat(parts, "")
 end
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-    group = vim.api.nvim_create_augroup("BufStatusLine", {}),
-    callback = set_status,
-})
+opt.statusline = set_status()
 
 -- ╭────────╮
 -- │ Winbar │
 -- ╰────────╯
-local set_winbar = function()
-    opt.winbar = "  %t %m"
-end
-
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-    group = vim.api.nvim_create_augroup("BufWinbar", {}),
-    callback = set_winbar,
-})
+opt.winbar = "  %t %m"
 
 -- ╭──────────────╮
 -- │ Lazy plugins │
