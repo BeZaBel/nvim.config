@@ -110,24 +110,13 @@ map("n", "<C-A-j>", "<cmd>bnext<cr>", { desc = "Move to next buffer" })
 -- ╭──────────────────────────────────────────────────────────────────╮
 -- │ Automatically close brackets, parethesis, quotes and other stuff │
 -- ╰──────────────────────────────────────────────────────────────────╯
-map("i", "'", "''<left>")
-map("i", '"', '""<left>')
 map("i", "(", "()<left>")
 map("i", "[", "[]<left>")
 map("i", "{", "{}<left>")
 map("i", "{;", "{};<left><left>")
 map("i", "(;", "();<left><left>")
-map("i", "/*", "/**/<left><left>")
-map("i", "<A-q>", "__<left>", { noremap = true })
-map("i", "<A-w>", "``<left>")
-map("i", "<A-e>", "****<left><left>")
-map("i", "<C-b>", "```<Enter>```<Up>")
-map("n", "<C-A-m>", "i- [ ] ")
 map("i", "<C-A-m>", "- [ ] ")
-
-map("v", "<C-b>", "\"hy:'<,'>s/<C-r>h/**<C-r>h**/g<cr>")
-map("v", "<C-i>", "\"hy:'<,'>s/<C-r>h/_<C-r>h_/g<cr>")
-map("v", "<A-k>", "\"hy:'<,'>s/<C-r>h/`<C-r>h`/g<cr>")
+map("n", "<C-A-m>", "i- [ ] ")
 
 -- ╭────────────────╮
 -- │ Open terminals │
@@ -147,19 +136,6 @@ end, { desc = "Open a terminal with lazygit" })
 map("n", "<C-A-Space>", function()
     vim.cmd("term")
 end, { desc = "Open a full size terminal" })
-
--- ╭────────────────────────────────╮
--- │ Move between markdown headings │
--- ╰────────────────────────────────╯
-map("n", "gk", function()
-    vim.cmd("silent! ?^##\\+\\s.*$")
-    vim.cmd("nohlsearch")
-end, { desc = "Move to upper heading" })
-
-map("n", "gj", function()
-    vim.cmd("silent! /^##\\+\\s.*$")
-    vim.cmd("nohlsearch")
-end, { desc = "Move to lower heading" })
 
 -- ╭────────────╮
 -- │ Move lines │
@@ -421,15 +397,22 @@ require("lazy").setup({
     },
     {
         "MeanderingProgrammer/render-markdown.nvim",
-        -- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
-        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
         ft = "markdown",
-        dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
         config = require("setup.rendermarkdown").setup,
     },
-    "HakonHarnes/img-clip.nvim",
-    event = "VeryLazy",
-    opts = {},
+    {
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = {},
+    },
+    {
+        "tadmccorkle/markdown.nvim",
+        ft = { "markdown" },
+        config = function()
+            require("markdown").setup()
+            vim.keymap.set("n", "<leader>m", "<CMD>MDTaskToggle<CR>", { noremap = true, silent = true })
+        end,
+    },
 }, {
     change_detection = {
         notify = false,
