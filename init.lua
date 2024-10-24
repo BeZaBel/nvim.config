@@ -358,12 +358,6 @@ require("lazy").setup({
             require("setup.kanagawa").setup()
         end,
     },
-    -- {
-    --     "Mofiqul/dracula.nvim",
-    --     lazy = false,
-    --     priority = 1000,
-    --     config = require("setup.dracula").setup,
-    -- },
     {
         "stevearc/conform.nvim",
         event = { "BufWritePre" },
@@ -399,11 +393,13 @@ require("lazy").setup({
     {
         "ej-shafran/compile-mode.nvim",
         -- version = "v5.*",
-        branch = "nightly",
+        branch = "latest",
         dependencies = {
+            "nvim-lua/plenary.nvim",
             { "m00qek/baleia.nvim", tag = "v1.3.0" },
         },
         config = function()
+            ---@type CompileModeOpts
             vim.g.compile_mode = {
                 baleia_setup = true,
             }
