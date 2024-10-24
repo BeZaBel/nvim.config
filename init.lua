@@ -311,6 +311,10 @@ require("lazy").setup({
         config = require("setup.lspconf").setup,
     },
     {
+        "nvimdev/lspsaga.nvim",
+        config = require("setup.lspsaga").setup,
+    },
+    {
         "williamboman/mason.nvim",
         dependencies = {
             "williamboman/mason-lspconfig.nvim",
