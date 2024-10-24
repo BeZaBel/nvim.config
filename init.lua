@@ -123,7 +123,7 @@ local function save_as()
 end
 
 map("n", "<leader>fs", vim.cmd.w, { desc = "Save file", noremap = true, silent = true })
-map("n", "<leader>fa", vim.cmd.wq, { desc = "Save and quit", noremap = true, silent = true })
+map("n", "<leader>fw", vim.cmd.wq, { desc = "Save and quit", noremap = true, silent = true })
 map("n", "<leader>fq", vim.cmd.quit, { desc = "Exit vim", noremap = true, silent = true })
 map("n", "<leader>ft", vim.cmd.tabnew, { desc = "New file in a tab", noremap = true, silent = true })
 map("n", "<leader>fn", vim.cmd.enew, { desc = "New file", noremap = true, silent = true })
