@@ -95,10 +95,42 @@ map("i", "<C-j>", "<left>", { noremap = true })
 -- ╭─────────────────╮
 -- │ File operations │
 -- ╰─────────────────╯
-map("n", "<leader>fs", vim.cmd.w, { desc = "Save file" })
-map("n", "<leader>fq", vim.cmd.quit, { desc = "Exit vim" })
-map("n", "<leader>fn", vim.cmd.tabnew, { desc = "New file" })
-map("n", "<leader>fa", ":w ", { desc = "Save as" })
+local function new_named_file()
+    vim.ui.input({ prompt = "File: " }, function(name)
+        vim.cmd({ cmd = "enew" })
+        vim.cmd.w(name)
+    end)
+end
+
+local function new_note()
+    vim.ui.input({ prompt = "New note: " }, function(name)
+        vim.cmd.enew()
+        vim.cmd.w("general/" .. name .. ".md")
+    end)
+end
+
+local function new_escrito()
+    vim.ui.input({ prompt = "New escrito: " }, function(name)
+        vim.cmd.enew()
+        vim.cmd.w("escritos/" .. name .. ".md")
+    end)
+end
+
+local function save_as()
+    vim.ui.input({ prompt = "Save as: " }, function(name)
+        vim.cmd.w(name)
+    end)
+end
+
+map("n", "<leader>fs", vim.cmd.w, { desc = "Save file", noremap = true, silent = true })
+map("n", "<leader>fa", vim.cmd.wq, { desc = "Save and quit", noremap = true, silent = true })
+map("n", "<leader>fq", vim.cmd.quit, { desc = "Exit vim", noremap = true, silent = true })
+map("n", "<leader>ft", vim.cmd.tabnew, { desc = "New file in a tab", noremap = true, silent = true })
+map("n", "<leader>fn", vim.cmd.enew, { desc = "New file", noremap = true, silent = true })
+map("n", "<leader>fm", new_named_file, { desc = "New named file", noremap = true, silent = true })
+map("n", "<leader>fa", save_as, { desc = "Save as", noremap = true, silent = true })
+map("n", "<leader>fog", new_note, { desc = "New note in general directory", noremap = true, silent = true })
+map("n", "<leader>foe", new_escrito, { desc = "New note in escritos directory", noremap = true, silent = true })
 
 -- ╭─────────────────────────────────────────────╮
 -- │ Buffer and splits management and navigation │
@@ -394,6 +426,15 @@ require("lazy").setup({
     {
         "stevearc/dressing.nvim",
         event = "VeryLazy",
+        config = function()
+            require("dressing").setup({
+                input = {
+                    title_pos = "center",
+                    relative = "win",
+                    prefer_width = 0.4,
+                },
+            })
+        end,
     },
     {
         "MeanderingProgrammer/render-markdown.nvim",
