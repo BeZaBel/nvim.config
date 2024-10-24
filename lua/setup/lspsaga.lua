@@ -18,6 +18,6 @@ return {
             },
         })
         local map = vim.keymap.set
-        map("n", "<leader>m", "<CMD>Lspsaga outline<CR>", { desc = "Open file outline" })
+        map("n", "<leader>sm", "<CMD>Lspsaga outline<CR>", { desc = "Open file outline" })
     end,
 }
