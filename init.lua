@@ -216,8 +216,13 @@ vim.api.nvim_create_autocmd("filetype", {
 -- ╭────────────────────╮
 -- │ Vanilla statusline │
 -- ╰────────────────────╯
+
 local function set_status()
-    local parts = { " %y", " %F ", "%=", " Row: %l/%L ", " Col: %v ", " %p%% " }
+    local function show_dir()
+        local dir = vim.fn.getcwd()
+        return ": " .. dir
+    end
+    local parts = { " ", show_dir(), " %y ", "%=", " Row: %l/%L ", " Col: %v ", " %p%% " }
     return table.concat(parts, "")
 end
 

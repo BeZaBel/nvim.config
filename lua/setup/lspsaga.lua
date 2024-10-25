@@ -3,7 +3,7 @@ return {
         local lspsaga = require("lspsaga")
         lspsaga.setup({
             symbol_in_winbar = {
-                enable = false,
+                enable = true,
             },
             outline = {
                 close_after_jump = true,
