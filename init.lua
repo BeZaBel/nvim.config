@@ -43,7 +43,7 @@ opt.expandtab = true
 opt.shiftwidth = 4
 opt.smartindent = true
 opt.showmode = false
-opt.scrolloff = 4
+opt.scrolloff = 3
 opt.sidescrolloff = 8
 opt.splitbelow = true
 opt.splitright = true
@@ -96,24 +96,34 @@ map("i", "<C-j>", "<left>", { noremap = true })
 -- │ File operations │
 -- ╰─────────────────╯
 local function new_named_file()
-    vim.ui.input({ prompt = "File: " }, function(name)
+    vim.ui.input({ prompt = "File (Give file extension): " }, function(name)
         vim.cmd({ cmd = "enew" })
         vim.cmd.w(name)
     end)
 end
 
-local function new_note()
-    vim.ui.input({ prompt = "New note: " }, function(name)
-        vim.cmd.enew()
-        vim.cmd.w("general/" .. name .. ".md")
-    end)
+local function create_general_note()
+    local general = vim.fn.isdirectory("./general")
+    if general == 0 then
+        print("Not in notes directory")
+    else
+        vim.ui.input({ prompt = "New markdown note: " }, function(name)
+            vim.cmd.enew()
+            vim.cmd.w("./general/" .. name .. ".md")
+        end)
+    end
 end
 
 local function new_escrito()
-    vim.ui.input({ prompt = "New escrito: " }, function(name)
-        vim.cmd.enew()
-        vim.cmd.w("escritos/" .. name .. ".md")
-    end)
+    local general = vim.fn.isdirectory("./escritos")
+    if general == 0 then
+        print("Not in notes directory")
+    else
+        vim.ui.input({ prompt = "New markdown escrito: " }, function(name)
+            vim.cmd.enew()
+            vim.cmd.w("./escritos/" .. name .. ".md")
+        end)
+    end
 end
 
 local function save_as()
@@ -129,7 +139,7 @@ map("n", "<leader>ft", vim.cmd.tabnew, { desc = "New file in a tab", noremap = t
 map("n", "<leader>fn", vim.cmd.enew, { desc = "New file", noremap = true, silent = true })
 map("n", "<leader>fm", new_named_file, { desc = "New named file", noremap = true, silent = true })
 map("n", "<leader>fa", save_as, { desc = "Save as", noremap = true, silent = true })
-map("n", "<leader>fog", new_note, { desc = "New note in general directory", noremap = true, silent = true })
+map("n", "<leader>fog", create_general_note, { desc = "New note in general directory", noremap = true, silent = true })
 map("n", "<leader>foe", new_escrito, { desc = "New note in escritos directory", noremap = true, silent = true })
 
 -- ╭─────────────────────────────────────────────╮
@@ -220,18 +230,23 @@ vim.api.nvim_create_autocmd("filetype", {
 local function set_status()
     local function show_dir()
         local dir = vim.fn.getcwd()
-        return ": " .. dir
+        return ":" .. dir
     end
-    local parts = { " ", show_dir(), " %y ", "%=", " Row: %l/%L ", " Col: %v ", " %p%% " }
+    local parts = {
+        -- " ",
+        show_dir(),
+        "  : %t %m",
+        -- " %y ",
+        "%=",
+        " Row: %l/%L ",
+        " Col: %v ",
+        " Pos: %p%% ",
+        -- " ",
+    }
     return table.concat(parts, "")
 end
 
 opt.statusline = set_status()
-
--- ╭────────╮
--- │ Winbar │
--- ╰────────╯
-opt.winbar = "  %t %m"
 
 -- ╭──────────────╮
 -- │ Lazy plugins │
