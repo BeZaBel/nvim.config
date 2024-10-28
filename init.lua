@@ -95,52 +95,22 @@ map("i", "<C-j>", "<left>", { noremap = true })
 -- ╭─────────────────╮
 -- │ File operations │
 -- ╰─────────────────╯
-local function new_named_file()
-    vim.ui.input({ prompt = "File (Give file extension): " }, function(name)
-        vim.cmd({ cmd = "enew" })
-        vim.cmd.w(name)
-    end)
-end
-
-local function create_general_note()
-    local general = vim.fn.isdirectory("./general")
-    if general == 0 then
-        print("Not in notes directory")
-    else
-        vim.ui.input({ prompt = "New markdown note: " }, function(name)
-            vim.cmd.enew()
-            vim.cmd.w("./general/" .. name .. ".md")
-        end)
-    end
-end
-
-local function new_escrito()
-    local general = vim.fn.isdirectory("./escritos")
-    if general == 0 then
-        print("Not in notes directory")
-    else
-        vim.ui.input({ prompt = "New markdown escrito: " }, function(name)
-            vim.cmd.enew()
-            vim.cmd.w("./escritos/" .. name .. ".md")
-        end)
-    end
-end
-
-local function save_as()
-    vim.ui.input({ prompt = "Save as: " }, function(name)
-        vim.cmd.w(name)
-    end)
-end
+local ff = require("file_functions")
 
 map("n", "<leader>fs", vim.cmd.w, { desc = "Save file", noremap = true, silent = true })
 map("n", "<leader>fw", vim.cmd.wq, { desc = "Save and quit", noremap = true, silent = true })
 map("n", "<leader>fq", vim.cmd.quit, { desc = "Exit vim", noremap = true, silent = true })
 map("n", "<leader>ft", vim.cmd.tabnew, { desc = "New file in a tab", noremap = true, silent = true })
 map("n", "<leader>fn", vim.cmd.enew, { desc = "New file", noremap = true, silent = true })
-map("n", "<leader>fm", new_named_file, { desc = "New named file", noremap = true, silent = true })
-map("n", "<leader>fa", save_as, { desc = "Save as", noremap = true, silent = true })
-map("n", "<leader>fog", create_general_note, { desc = "New note in general directory", noremap = true, silent = true })
-map("n", "<leader>foe", new_escrito, { desc = "New note in escritos directory", noremap = true, silent = true })
+map("n", "<leader>fm", ff.new_named_file, { desc = "New named file", noremap = true, silent = true })
+map("n", "<leader>fa", ff.save_as, { desc = "Save as", noremap = true, silent = true })
+map(
+    "n",
+    "<leader>fog",
+    ff.create_general_note,
+    { desc = "New note in general directory", noremap = true, silent = true }
+)
+map("n", "<leader>foe", ff.new_escrito, { desc = "New note in escritos directory", noremap = true, silent = true })
 
 -- ╭─────────────────────────────────────────────╮
 -- │ Buffer and splits management and navigation │
@@ -228,20 +198,15 @@ vim.api.nvim_create_autocmd("filetype", {
 -- ╰────────────────────╯
 
 local function set_status()
-    local function show_dir()
-        local dir = vim.fn.getcwd()
-        return ":" .. dir
-    end
     local parts = {
-        -- " ",
-        show_dir(),
-        "  : %t %m",
-        -- " %y ",
+        " : %t %m",
         "%=",
-        " Row: %l/%L ",
-        " Col: %v ",
-        " Pos: %p%% ",
-        -- " ",
+        ": %{expand('%:p:h')} ",
+        "| ",
+        "Row: %l/%L ",
+        "Col: %v ",
+        "| ",
+        "Progress: %p%% ",
     }
     return table.concat(parts, "")
 end
