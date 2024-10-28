@@ -15,7 +15,7 @@ return {
             overrides = function(colors)
                 local theme = colors.theme
                 return {
-                    CursorLineNr = { bg = theme.ui.bg_p2, bold = true },
+                    -- CursorLineNr = { bg = theme.ui.bg_p2, bold = true },
                     -- NormalFloat = { bg = "none" },
                     FloatBorder = { bg = "none" },
                     FloatTitle = { bg = "none" },
