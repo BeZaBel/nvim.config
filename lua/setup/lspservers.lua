@@ -1,15 +1,9 @@
 local servers = {
     lua_ls = {
-        Lua = {
-            telemetry = { enable = false },
-            diagnostics = {
-                globals = { "vim" },
-                disable = { "missing-fields" },
-            },
-            workspace = {
-                library = {
-                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                    [vim.fn.stdpath("config") .. "/lua"] = true,
+        settings = {
+            Lua = {
+                completion = {
+                    callSnippet = "Replace",
                 },
             },
         },

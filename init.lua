@@ -73,18 +73,6 @@ gpt.netrw_browse_split = 0
 gpt.netrw_liststyle = 3
 gpt.netrw_altv = 1
 
--- ╭──────────────────────────────╮
--- │ Gui configurations (neovide) │
--- ╰──────────────────────────────╯
-opt.guifont = "Iosevka Nerd Font Mono:h11"
-gpt.neovide_padding_top = 10
-gpt.neovide_padding_left = 10
-gpt.neovide_padding_right = 10
-gpt.neovide_padding_bottom = 10
-gpt.neovide_position_animation_length = 0.05
-gpt.neovide_scroll_animation_length = 0.05
-gpt.neovide_cursor_animation_length = 0.05
-
 -- ╭──────────╮
 -- │ Movement │
 -- ╰──────────╯
@@ -129,8 +117,8 @@ map("i", "{", "{}<left>")
 map("i", "{;", "{};<left><left>")
 map("i", "(;", "();<left><left>")
 map("i", "<C-A-m>", "- [ ] ")
-map("n", "<leader>am", "i- [ ] ")
-map("n", "<leader>id", function()
+map("n", "<leader>om", "i- [ ] ")
+map("n", "<leader>od", function()
     vim.cmd.execute('"normal idate\\<Tab>\\<CR>"')
 end, { desc = "Insert date" })
 
@@ -246,6 +234,7 @@ require("lazy").setup({
             },
         },
     },
+    { "Bilal2453/luvit-meta", lazy = true },
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
@@ -314,7 +303,6 @@ require("lazy").setup({
     {
         "stevearc/oil.nvim",
         opts = {},
-        dependencies = { "echasnovski/mini.icons" },
         config = require("setup.oil").setup,
     },
     {
