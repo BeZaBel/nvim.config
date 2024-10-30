@@ -70,6 +70,7 @@ return {
 
         local map = vim.keymap.set
         map("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
+        map("n", "<leader>or", require("telescope.builtin").lsp_references, { desc = "Show backlinks" })
         map("n", "<C-A-n>", "<cmd>Telescope notify<cr>", { desc = "Open notifications in telescope" })
         map("n", "<C-A-b>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
         map("n", "<leader>/", function()

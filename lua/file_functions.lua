@@ -6,7 +6,7 @@ function M.new_named_file()
             vim.cmd({ cmd = "enew" })
             vim.cmd.w(name)
         else
-            print("No name given. Enter a name.")
+            vim.api.nvim_err_writeln("No name given. No file created.")
         end
     end)
 end
@@ -19,9 +19,11 @@ function M.create_general_note()
         vim.ui.input({ prompt = "New markdown note: " }, function(name)
             if name then
                 vim.cmd.enew()
-                vim.cmd.w("./general/" .. name .. ".md")
+                vim.cmd.normal("O# " .. name)
+                vim.cmd.write("./general/" .. name .. ".md")
+                vim.cmd.normal("2o")
             else
-                print("No name given. Enter a name.")
+                vim.api.nvim_err_writeln("No name given. No file created.")
             end
         end)
     end
@@ -35,9 +37,11 @@ function M.new_escrito()
         vim.ui.input({ prompt = "New markdown escrito: " }, function(name)
             if name then
                 vim.cmd.enew()
-                vim.cmd.w("./escritos/" .. name .. ".md")
+                vim.cmd.normal("O# " .. name)
+                vim.cmd.write("./escritos/" .. name .. ".md")
+                vim.cmd.normal("2o")
             else
-                print("No name given. Enter a name.")
+                vim.api.nvim_err_writeln("No name given. No file created.")
             end
         end)
     end
@@ -48,7 +52,7 @@ function M.save_as()
         if name then
             vim.cmd.w(name)
         else
-            print("No name given. Enter a name")
+            vim.api.nvim_err_writeln("No name given. No file created.")
         end
     end)
 end

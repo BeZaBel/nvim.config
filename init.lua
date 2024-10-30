@@ -56,6 +56,7 @@ opt.breakindent = true
 opt.list = true
 opt.listchars = "space:·,leadmultispace:│   ,trail:·,nbsp:␣"
 opt.updatetime = 500
+opt.smoothscroll = true
 wpt.signcolumn = "yes"
 wpt.fillchars = "eob: ,vert:│"
 
@@ -128,7 +129,10 @@ map("i", "{", "{}<left>")
 map("i", "{;", "{};<left><left>")
 map("i", "(;", "();<left><left>")
 map("i", "<C-A-m>", "- [ ] ")
-map("n", "<C-A-m>", "i- [ ] ")
+map("n", "<leader>am", "i- [ ] ")
+map("n", "<leader>id", function()
+    vim.cmd.execute('"normal idate\\<Tab>\\<CR>"')
+end, { desc = "Insert date" })
 
 -- ╭────────────────╮
 -- │ Open terminals │
@@ -199,14 +203,14 @@ vim.api.nvim_create_autocmd("filetype", {
 
 local function set_status()
     local parts = {
-        " : %t %m",
+        "  : %t %m",
         "%=",
-        ": %{expand('%:p:h')} ",
+        ":: %{expand('%:p:h')} ",
         "| ",
-        "Row: %l/%L ",
-        "Col: %v ",
+        "󰠷 : %l/%L ",
+        "󰠵: %v ",
         "| ",
-        "Progress: %p%% ",
+        "󰠞 : %p%% ",
     }
     return table.concat(parts, "")
 end
