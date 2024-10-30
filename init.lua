@@ -205,7 +205,7 @@ local function set_status()
     local parts = {
         "  : %t %m",
         "%=",
-        ":: %{expand('%:p:h')} ",
+        " : %{expand('%:p:h')} ",
         "| ",
         "󰠷 : %l/%L ",
         "󰠵: %v ",
