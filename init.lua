@@ -1,11 +1,9 @@
--- ╔════════════════════════════════════════════════════╗
--- ║ ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ║
--- ║ ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ║
--- ║ ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ║
--- ║ ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ║
--- ║ ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ║
--- ║ ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ║
--- ╚════════════════════════════════════════════════════╝
+-- ╭─────────────────────────────────────────────╮
+-- │ __   _ _______  _____  _    _ _____ _______ │
+-- │ | \  | |______ |     |  \  /    |   |  |  | │
+-- │ |  \_| |______ |_____|   \/   __|__ |  |  | │
+-- │                                             │
+-- ╰─────────────────────────────────────────────╯
 -- ╭──────────────────────────────────────╮
 -- │ Basic settings, remaps and utilities │
 -- ╰──────────────────────────────────────╯
@@ -43,7 +41,7 @@ opt.expandtab = true
 opt.shiftwidth = 4
 opt.smartindent = true
 opt.showmode = false
-opt.scrolloff = 3
+opt.scrolloff = 0
 opt.sidescrolloff = 8
 opt.splitbelow = true
 opt.splitright = true
@@ -93,6 +91,7 @@ map("n", "<leader>ft", vim.cmd.tabnew, { desc = "New file in a tab", noremap = t
 map("n", "<leader>fn", vim.cmd.enew, { desc = "New file", noremap = true, silent = true })
 map("n", "<leader>fm", ff.new_named_file, { desc = "New named file", noremap = true, silent = true })
 map("n", "<leader>fa", ff.save_as, { desc = "Save as", noremap = true, silent = true })
+map("n", "<leader>fop", ff.new_personal, { desc = "New personal note", noremap = true, silent = true })
 map(
     "n",
     "<leader>fog",

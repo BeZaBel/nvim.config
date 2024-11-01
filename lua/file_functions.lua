@@ -29,6 +29,24 @@ function M.create_general_note()
     end
 end
 
+function M.new_personal()
+    local general = vim.fn.isdirectory("./personal")
+    if general == 0 then
+        print("Not in notes directory")
+    else
+        vim.ui.input({ prompt = "New personal note: " }, function(name)
+            if name then
+                vim.cmd.enew()
+                vim.cmd.normal("O# " .. name)
+                vim.cmd.write("./escritos/" .. name .. ".md")
+                vim.cmd.normal("2o")
+            else
+                vim.api.nvim_err_writeln("No name given. No file created.")
+            end
+        end)
+    end
+end
+
 function M.new_escrito()
     local general = vim.fn.isdirectory("./escritos")
     if general == 0 then
