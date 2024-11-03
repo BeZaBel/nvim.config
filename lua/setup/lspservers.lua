@@ -45,6 +45,7 @@ local servers = {
             "tex",
         },
     },
+    pylsp = {},
     pyright = {
         python = {
             analysis = {
