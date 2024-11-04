@@ -133,7 +133,7 @@ end, { desc = "Open vertical term" })
 map("n", "<leader>[", function()
     vim.cmd("10split +term")
 end, { desc = "Open horizontal term" })
-map("n", "<C-A-g>", function()
+map("n", "<leader>g", function()
     vim.cmd("term lazygit")
 end, { desc = "Open a terminal with lazygit" })
 map("n", "<C-A-Space>", function()
@@ -256,6 +256,10 @@ require("lazy").setup({
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
                 build = "make",
+            },
+            {
+                "xiyaowong/telescope-emoji.nvim",
+                lazy = true,
             },
         },
         config = require("setup.telescope").setup,

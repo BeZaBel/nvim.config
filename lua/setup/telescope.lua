@@ -1,5 +1,6 @@
 local extensions = {
     fuzzy = "fzf",
+    emoji = "emoji",
 }
 
 return {
@@ -24,7 +25,15 @@ return {
                     },
                 },
             },
-            extensions = {},
+            extensions = {
+                emoji = {
+                    action = function(emoji)
+                        vim.fn.setreg("+", emoji.value)
+                        print([[Press p or " + + to paste this emoji]] .. emoji.value)
+                        vim.api.nvim_put({ emoji.value }, "c", false, true)
+                    end,
+                },
+            },
         })
 
         for i, value in pairs(extensions) do
@@ -76,9 +85,13 @@ return {
         map("n", "<leader>/", function()
             require("telescope.builtin").current_buffer_fuzzy_find()
         end, { desc = "[/] Fuzzily search in current buffer" })
-        map("n", "<C-A-f>", function()
+
+        map("n", "<leader>n", "<CMD>Telescope emoji<CR>", { desc = "Open telescope emoji" })
+
+        map("n", "<leader>df", function()
             require("telescope.builtin").find_files()
         end, { desc = "Find file in directory" })
+
         -- live_grep integration
         map("n", "<leader>s/", telescope_live_grep_open_files, { desc = "[S]earch [/] in Open Files" })
         map("n", "<leader>qg", require("telescope.builtin").git_files, { desc = "Search [G]it [F]iles" })
