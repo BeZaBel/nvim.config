@@ -173,6 +173,19 @@ vim.api.nvim_create_autocmd("filetype", {
     end,
 })
 
+-- ╭───────╮
+-- │ Folds │
+-- ╰───────╯
+
+local openFolds = vim.api.nvim_create_augroup("autoOpenFolds", { clear = true })
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    group = openFolds,
+    callback = function()
+        vim.cmd.normal("zR")
+    end,
+    pattern = "*",
+})
+
 -- ╭────────────────────╮
 -- │ Vanilla statusline │
 -- ╰────────────────────╯
@@ -378,17 +391,6 @@ require("lazy").setup({
         "folke/noice.nvim",
         dependencies = {
             "MunifTanjim/nui.nvim",
-            {
-                "rcarriga/nvim-notify",
-                opts = {
-                    timeout = 100,
-                    fps = 60,
-                    max_width = 40,
-                    render = "default",
-                    top_down = true,
-                    stages = "fade",
-                },
-            },
         },
         config = require("setup.noice").setup,
     },

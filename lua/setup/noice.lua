@@ -1,10 +1,6 @@
 return {
     setup = function()
         require("noice").setup({
-            notify = {
-                enable = true,
-                view = "notify",
-            },
             lsp = {
                 override = {
                     ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -21,7 +17,6 @@ return {
             },
             routes = {
                 {
-                    view = "notify",
                     filter = { event = "msg_showmode" },
                 },
             },
@@ -68,7 +63,6 @@ return {
                     },
                 },
             },
-            require("notify").setup(),
         })
     end,
 }

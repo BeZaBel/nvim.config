@@ -86,7 +86,7 @@ return {
             require("telescope.builtin").current_buffer_fuzzy_find()
         end, { desc = "[/] Fuzzily search in current buffer" })
 
-        map("n", "<leader>n", "<CMD>Telescope emoji<CR>", { desc = "Open telescope emoji" })
+        map("n", "<leader>sn", "<CMD>Telescope emoji<CR>", { desc = "Open telescope emoji" })
 
         map("n", "<leader>df", function()
             require("telescope.builtin").find_files()
