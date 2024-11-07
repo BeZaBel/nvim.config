@@ -55,6 +55,8 @@ opt.list = true
 opt.listchars = "space:·,leadmultispace:│   ,trail:·,nbsp:␣"
 opt.updatetime = 500
 opt.smoothscroll = true
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
 wpt.signcolumn = "yes"
 wpt.fillchars = "eob: ,vert:│"
 
@@ -126,19 +128,6 @@ end, { desc = "Insert date" })
 -- ╰────────────────╯
 map("t", "<C-A-c>", [[<C-\><C-n>]])
 map("t", "<Esc>", [[<C-\><C-n>]])
-
-map("n", "<leader>]", function()
-    vim.cmd("70vsplit +term")
-end, { desc = "Open vertical term" })
-map("n", "<leader>[", function()
-    vim.cmd("10split +term")
-end, { desc = "Open horizontal term" })
-map("n", "<leader>g", function()
-    vim.cmd("term lazygit")
-end, { desc = "Open a terminal with lazygit" })
-map("n", "<C-A-Space>", function()
-    vim.cmd("term")
-end, { desc = "Open a full size terminal" })
 
 -- ╭────────────╮
 -- │ Move lines │
@@ -433,6 +422,14 @@ require("lazy").setup({
             require("markdown").setup()
             vim.keymap.set("n", "<leader>m", "<CMD>MDTaskToggle<CR>", { noremap = true, silent = true })
         end,
+    },
+    {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        opts = require("setup.snacks").opts,
+        keys = require("setup.snacks").keys,
+        init = require("setup.snacks").init,
     },
 }, {
     change_detection = {
