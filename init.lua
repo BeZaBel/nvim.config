@@ -111,23 +111,18 @@ map("n", "<leader>W", "<CMD>bd!<CR>", { desc = "Remove current buffer" })
 map("n", "<C-A-k>", "<cmd>bprev<cr>", { desc = "Move to previous buffer" })
 map("n", "<C-A-j>", "<cmd>bnext<cr>", { desc = "Move to next buffer" })
 
--- ╭──────────────────────────────────────────────────────────────────╮
--- │ Automatically close brackets, parethesis, quotes and other stuff │
--- ╰──────────────────────────────────────────────────────────────────╯
-map("i", "(", "()<left>")
-map("i", "[", "[]<left>")
-map("i", "{", "{}<left>")
-map("i", "{;", "{};<left><left>")
-map("i", "(;", "();<left><left>")
+-- ╭────────────────────╮
+-- │ Some misc keybinds │
+-- ╰────────────────────╯
 map("i", "<C-A-m>", "- [ ] ")
 map("n", "<leader>om", "i- [ ] ")
 map("n", "<leader>od", function()
     vim.cmd.execute('"normal idate\\<Tab>\\<CR>"')
 end, { desc = "Insert date" })
 
--- ╭────────────────╮
--- │ Open terminals │
--- ╰────────────────╯
+-- ╭──────────────────╮
+-- │ Inside terminals │
+-- ╰──────────────────╯
 map("t", "<C-A-c>", [[<C-\><C-n>]])
 map("t", "<Esc>", [[<C-\><C-n>]])
 
@@ -146,9 +141,6 @@ map("v", "<leader>r", '"hy:%s/<C-r>h//g<left><left>', {
     desc = [[Replace all
 instances of selected word]],
 })
-
--- Open netrw
--- map("n", "<leader>le", "<CMD>20Lex<CR>")
 
 -- ╭───────────────────╮
 -- │ Highlight on yank │
@@ -363,7 +355,6 @@ require("lazy").setup({
     },
     {
         "ej-shafran/compile-mode.nvim",
-        -- version = "v5.*",
         branch = "latest",
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -409,10 +400,10 @@ require("lazy").setup({
     {
         "tadmccorkle/markdown.nvim",
         ft = { "markdown" },
-        config = function()
-            require("markdown").setup()
-            vim.keymap.set("n", "<leader>m", "<CMD>MDTaskToggle<CR>", { noremap = true, silent = true })
-        end,
+        keys = {
+            { "<leader>m", "<cmd>MDTaskToggle<cr>", desc = "Toggle task" },
+        },
+        opts = {},
     },
     {
         "folke/snacks.nvim",
@@ -421,6 +412,21 @@ require("lazy").setup({
         opts = require("setup.snacks").opts,
         keys = require("setup.snacks").keys,
         init = require("setup.snacks").init,
+    },
+    {
+        "folke/todo-comments.nvim",
+        event = "VimEnter",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = { signs = false },
+    },
+    {
+        "numToStr/comment.nvim",
+        opts = {},
+    },
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        opts = {},
     },
 }, {
     change_detection = {
