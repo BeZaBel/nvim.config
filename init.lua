@@ -55,8 +55,10 @@ opt.list = true
 opt.listchars = "space:·,leadmultispace:│   ,trail:·,nbsp:␣"
 opt.updatetime = 500
 opt.smoothscroll = true
+opt.foldenable = false
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldtext = "nvim_treesitter#foldtext()"
 wpt.signcolumn = "yes"
 wpt.fillchars = "eob: ,vert:│"
 
@@ -171,19 +173,6 @@ vim.api.nvim_create_autocmd("filetype", {
         wpt.number = true
         wpt.relativenumber = true
     end,
-})
-
--- ╭───────╮
--- │ Folds │
--- ╰───────╯
-
-local openFolds = vim.api.nvim_create_augroup("autoOpenFolds", { clear = true })
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-    group = openFolds,
-    callback = function()
-        vim.cmd.normal("zR")
-    end,
-    pattern = "*",
 })
 
 -- ╭────────────────────╮
