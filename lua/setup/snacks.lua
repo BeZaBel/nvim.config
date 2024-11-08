@@ -65,9 +65,16 @@ return {
             desc = "Lazygit",
         },
         {
+            "<leader>]",
+            function()
+                Snacks.terminal.open()
+            end,
+            desc = "Toggle Terminal",
+        },
+        {
             "<leader>[",
             function()
-                Snacks.terminal()
+                Snacks.terminal.toggle()
             end,
             desc = "Toggle Terminal",
         },
