@@ -38,7 +38,7 @@ function M.new_personal()
             if name then
                 vim.cmd.enew()
                 vim.cmd.normal("O# " .. name)
-                vim.cmd.write("./escritos/" .. name .. ".md")
+                vim.cmd.write("./personal/" .. name .. ".md")
                 vim.cmd.normal("2o")
             else
                 vim.api.nvim_err_writeln("No name given. No file created.")
