@@ -24,7 +24,7 @@ return {
         },
         lazygit = { enabled = true },
         rename = { enabled = false },
-        notify = { enabled = false },
+        notify = { enabled = true },
         terminal = {
             enabled = true,
             keys = {
@@ -57,6 +57,13 @@ return {
         },
     },
     keys = {
+        {
+            "<leader>n",
+            function()
+                Snacks.notifier.show_history()
+            end,
+            desc = "Show notifier history",
+        },
         {
             "<leader>g",
             function()
