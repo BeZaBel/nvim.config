@@ -46,15 +46,6 @@ local servers = {
         },
     },
     pylsp = {},
-    pyright = {
-        python = {
-            analysis = {
-                autoSearchPaths = true,
-                diagnosticMode = "openFilesOnly",
-                useLibraryCodeForTypes = true,
-            },
-        },
-    },
 }
 
 return servers
