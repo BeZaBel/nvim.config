@@ -100,6 +100,8 @@ return {
                 vim.print = _G.dd -- Override print to use snacks for `:=` command
 
                 -- Create some toggle mappings
+                Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
+                Snacks.toggle.line_number():map("<leader>ul")
                 Snacks.toggle.diagnostics():map("<leader>ud")
                 Snacks.toggle.treesitter():map("<leader>uT")
                 Snacks.toggle

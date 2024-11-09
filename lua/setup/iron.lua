@@ -4,11 +4,17 @@ return {
             config = {
                 scratch_repl = true,
                 repl_definition = {
+                    scm = {
+                        command = { "chez" },
+                    },
+                    r = {
+                        command = { "radian" },
+                    },
                     python = {
-                        command = { "python" },
+                        command = { "python3" },
                     },
                 },
-                repl_open_cmd = require("iron.view").right(60),
+                repl_open_cmd = require("iron.view").bottom(10),
             },
             keymaps = {
                 send_motion = "<leader>rc",

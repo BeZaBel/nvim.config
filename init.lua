@@ -268,7 +268,7 @@ require("lazy").setup({
             "saadparwaiz1/cmp_luasnip",
             "rafamadriz/friendly-snippets",
             "onsails/lspkind.nvim",
-            -- "R-nvim/cmp-r",
+            "R-nvim/cmp-r",
         },
         config = require("setup.cmp").setup,
     },
@@ -347,13 +347,6 @@ require("lazy").setup({
         "lervag/vimtex",
         ft = "tex",
         config = require("setup.vimtex").setup,
-    },
-    {
-        "R-nvim/R.nvim",
-        version = "~0.1.0",
-        dependencies = { "R-nvim/cmp-r" },
-        ft = "r",
-        config = require("setup.rnvim").setup,
     },
     {
         "NvChad/nvim-colorizer.lua",
