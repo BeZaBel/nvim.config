@@ -439,6 +439,12 @@ require("lazy").setup({
         "goolord/alpha-nvim",
         config = require("setup.alpha").setup,
     },
+    {
+        "hkupty/iron.nvim",
+        config = require("setup.iron").setup,
+        fg = "python",
+        keys = require("setup.iron").keys,
+    },
 }, {
     change_detection = {
         notify = false,
