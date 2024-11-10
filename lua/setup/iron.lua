@@ -4,6 +4,9 @@ return {
             config = {
                 scratch_repl = true,
                 repl_definition = {
+                    lua = {
+                        command = { "lua" },
+                    },
                     scm = {
                         command = { "chez" },
                     },
