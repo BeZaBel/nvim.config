@@ -18,7 +18,7 @@ return {
                     },
                 },
                 -- repl_open_cmd = require("iron.view").bottom(10),
-                repl_open_cmd = "10 split",
+                repl_open_cmd = "20 split",
             },
             keymaps = {
                 send_motion = "<leader>rc",
