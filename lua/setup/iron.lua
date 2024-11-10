@@ -14,7 +14,8 @@ return {
                         command = { "python3" },
                     },
                 },
-                repl_open_cmd = require("iron.view").bottom(10),
+                -- repl_open_cmd = require("iron.view").bottom(10),
+                repl_open_cmd = "10 split",
             },
             keymaps = {
                 send_motion = "<leader>rc",
