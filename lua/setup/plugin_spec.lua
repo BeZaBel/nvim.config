@@ -226,12 +226,6 @@ return {
         keys = require("setup.iron").keys,
     },
     {
-        "Kurama622/markdown-org",
-        ft = "markdown",
-        config = require("setup.markdown-org").setup,
-        keys = require("setup.markdown-org").keys,
-    },
-    {
         "deparr/tairiki.nvim",
         lazy = false,
         priority = 1000, -- only necessary if you use tairiki as default theme
