@@ -110,6 +110,7 @@ return {
             require("kanagawa").setup({
                 compile = true,
             })
+            -- Pass True to activate colorscheme
             require("setup.kanagawa").setup()
         end,
     },
@@ -229,5 +230,17 @@ return {
         ft = "markdown",
         config = require("setup.markdown-org").setup,
         keys = require("setup.markdown-org").keys,
+    },
+    {
+        "deparr/tairiki.nvim",
+        lazy = false,
+        priority = 1000, -- only necessary if you use tairiki as default theme
+        config = function()
+            require("tairiki").setup({
+                -- optional configuration here
+                visual_bold = true,
+            })
+            require("tairiki").load() -- only necessary to use as default theme, has same behavior as ':colorscheme tairiki'
+        end,
     },
 }

@@ -1,5 +1,5 @@
 return {
-    setup = function()
+    setup = function(active)
         require("kanagawa").setup({
             transparent = false,
             undercurl = true,
@@ -35,8 +35,10 @@ return {
                     TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
                 }
             end,
-            -- wave, dragon, lotus
-            vim.cmd.colorscheme("kanagawa-wave"),
         })
+        if active then
+            -- wave, dragon, lotus
+            vim.cmd.colorscheme("kanagawa-wave")
+        end
     end,
 }
