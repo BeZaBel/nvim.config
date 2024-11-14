@@ -225,4 +225,12 @@ return {
         fg = "python",
         keys = require("setup.iron").keys,
     },
+    {
+        "Shatur/neovim-ayu",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd.colorscheme("ayu")
+        end,
+    },
 }
