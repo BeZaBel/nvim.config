@@ -111,7 +111,7 @@ return {
                 compile = true,
             })
             -- Pass True to activate colorscheme
-            require("setup.kanagawa").setup()
+            require("setup.kanagawa").setup(true)
         end,
     },
     {
@@ -215,22 +215,22 @@ return {
         event = "InsertEnter",
         opts = {},
     },
-    {
+    --[[ {
         "goolord/alpha-nvim",
         config = require("setup.alpha").setup,
-    },
+    }, ]]
     {
         "hkupty/iron.nvim",
         config = require("setup.iron").setup,
         fg = "python",
         keys = require("setup.iron").keys,
     },
-    {
-        "Shatur/neovim-ayu",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            vim.cmd.colorscheme("ayu")
-        end,
-    },
+    -- {
+    --     "Shatur/neovim-ayu",
+    --     lazy = false,
+    --     priority = 1000,
+    --     config = function()
+    --         vim.cmd.colorscheme("ayu")
+    --     end,
+    -- },
 }

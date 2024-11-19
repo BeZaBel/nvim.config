@@ -55,6 +55,71 @@ return {
                 },
             },
         },
+        dashboard = {
+            enabled = true,
+            preset = {
+                header = {
+                    [[
+     ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓ 
+     ██ ▀█   █ ▓█   ▀ ▒██▒  ██▒▓██░   █▒▓██▒▓██▒▀█▀ ██▒ 
+    ▓██  ▀█ ██▒▒███   ▒██░  ██▒ ▓██  █▒░▒██▒▓██    ▓██░ 
+    ▓██▒  ▐▌██▒▒▓█  ▄ ▒██   ██░  ▒██ █░░░██░▒██    ▒██  
+    ▒██░   ▓██░░▒████▒░ ████▓▒░   ▒▀█░  ░██░▒██▒   ░██▒ 
+    ░ ▒░   ▒ ▒ ░░ ▒░ ░░ ▒░▒░▒░    ░ ▐░  ░▓  ░ ▒░   ░  ░ 
+    ░ ░░   ░ ▒░ ░ ░  ░  ░ ▒ ▒░    ░ ░░   ▒ ░░  ░      ░ 
+       ░   ░ ░    ░   ░ ░ ░ ▒       ░░   ▒ ░░      ░    
+             ░    ░  ░    ░ ░        ░   ░         ░    
+                                    ░                   
+                    ]],
+                },
+                keys = {
+                    { icon = " ", key = "n", desc = "New file", action = "<CMD>ene<CR>" },
+                    {
+                        icon = " ",
+                        key = "m",
+                        desc = "New named file",
+                        action = function()
+                            require("file_functions").new_named_file()
+                        end,
+                    },
+                    {
+                        icon = " ",
+                        key = "g",
+                        desc = "New general note",
+                        action = function()
+                            require("file_functions").create_general_note()
+                        end,
+                    },
+                    {
+                        icon = " ",
+                        key = "e",
+                        desc = "New writing",
+                        action = function()
+                            require("file_functions").new_escrito()
+                        end,
+                    },
+                    { icon = " ", key = "l", desc = "Open file explorer", action = "<CMD>Oil<CR>" },
+                    {
+                        icon = " ",
+                        key = "g",
+                        desc = "Find Text",
+                        action = ":lua Snacks.dashboard.pick('live_grep')",
+                    },
+                    {
+                        icon = " ",
+                        key = "r",
+                        desc = "Recent Files",
+                        action = ":lua Snacks.dashboard.pick('oldfiles')",
+                    },
+                    { icon = "󰩈 ", key = "q", desc = "Exit Neovim", action = "<CMD>qa<CR>" },
+                },
+            },
+            sections = {
+                { section = "header" },
+                { section = "keys", gap = 1, padding = 1 },
+                { section = "startup" },
+            },
+        },
     },
     keys = {
         {
