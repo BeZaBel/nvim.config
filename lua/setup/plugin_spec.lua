@@ -103,18 +103,6 @@ return {
         config = require("setup.rainbow-delimiters").setup,
     },
     {
-        "rebelot/kanagawa.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            require("kanagawa").setup({
-                compile = true,
-            })
-            -- Pass True to activate colorscheme
-            require("setup.kanagawa").setup(true)
-        end,
-    },
-    {
         "stevearc/conform.nvim",
         event = { "BufWritePre" },
         cmd = { "ConformInfo" },
@@ -215,15 +203,23 @@ return {
         event = "InsertEnter",
         opts = {},
     },
-    --[[ {
-        "goolord/alpha-nvim",
-        config = require("setup.alpha").setup,
-    }, ]]
     {
         "hkupty/iron.nvim",
         config = require("setup.iron").setup,
         fg = "python",
         keys = require("setup.iron").keys,
+    },
+    {
+        "RRethy/base16-nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("base16-colorscheme").with_config({
+                telescope = true,
+                cmp = true,
+            })
+            vim.cmd("colorscheme base16-black-metal-bathory")
+        end,
     },
     -- {
     --     "Shatur/neovim-ayu",
@@ -231,6 +227,18 @@ return {
     --     priority = 1000,
     --     config = function()
     --         vim.cmd.colorscheme("ayu")
+    --     end,
+    -- },
+    -- {
+    --     "rebelot/kanagawa.nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     config = function()
+    --         require("kanagawa").setup({
+    --             compile = true,
+    --         })
+    --         -- Pass True to activate colorscheme
+    --         require("setup.kanagawa").setup()
     --     end,
     -- },
 }
