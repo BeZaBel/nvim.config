@@ -219,6 +219,7 @@ return {
                 cmp = true,
             })
             vim.cmd("colorscheme base16-black-metal-bathory")
+            vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
         end,
     },
     -- {
