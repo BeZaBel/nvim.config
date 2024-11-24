@@ -222,24 +222,43 @@ return {
             -- vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
         end,
     },
-    -- {
-    --     "Shatur/neovim-ayu",
-    --     lazy = false,
-    --     priority = 1000,
-    --     config = function()
-    --         vim.cmd.colorscheme("ayu")
-    --     end,
-    -- },
-    -- {
-    --     "rebelot/kanagawa.nvim",
-    --     lazy = false,
-    --     priority = 1000,
-    --     config = function()
-    --         require("kanagawa").setup({
-    --             compile = true,
-    --         })
-    --         -- Pass True to activate colorscheme
-    --         require("setup.kanagawa").setup()
-    --     end,
-    -- },
+    {
+        "atiladefreitas/lazyclip",
+        config = function()
+            require("lazyclip").setup()
+        end,
+        keys = {
+            { "<leader>Cw", ":lua require('lazyclip').show_clipboard()<CR>", desc = "Open Clipboard Manager" },
+        },
+    },
+    {
+        "karb94/neoscroll.nvim",
+        config = function()
+            require("neoscroll").setup({
+                mappings = { -- Keys to be mapped to their corresponding default scrolling animation
+                    "<C-u>",
+                    "<C-d>",
+                    "<C-b>",
+                    "<C-f>",
+                    "<C-y>",
+                    "<C-e>",
+                    "zt",
+                    "zz",
+                    "zb",
+                },
+                hide_cursor = false, -- Hide cursor while scrolling
+                stop_eof = true, -- Stop at <EOF> when scrolling downwards
+                respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+                cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+                easing = "linear", -- Default easing function
+                pre_hook = nil, -- Function to run before the scrolling animation starts
+                post_hook = nil, -- Function to run after the scrolling animation ends
+                performance_mode = false, -- Disable "Performance Mode" on all buffers.
+                ignored_events = { -- Events ignored while scrolling
+                    "WinScrolled",
+                    "CursorMoved",
+                },
+            })
+        end,
+    },
 }
