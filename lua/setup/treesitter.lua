@@ -32,6 +32,7 @@ return {
                 "latex",
                 "regex",
                 "scheme",
+                "sql",
             },
             incremental_selection = {
                 enable = true,
