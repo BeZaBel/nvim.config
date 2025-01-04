@@ -14,7 +14,8 @@ return {
                         command = { "radian" },
                     },
                     python = {
-                        command = { "python3" },
+                        -- command = { "python3" },
+                        command = { "ptpython" },
                     },
                 },
                 -- repl_open_cmd = require("iron.view").bottom(10),
