@@ -218,7 +218,7 @@ return {
                 telescope = true,
                 cmp = true,
             })
-            vim.cmd("colorscheme base16-black-metal-bathory")
+            vim.cmd("colorscheme base16-kanagawa")
             -- vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
         end,
     },
