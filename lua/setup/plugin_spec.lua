@@ -218,7 +218,7 @@ return {
                 telescope = true,
                 cmp = true,
             })
-            vim.cmd("colorscheme base16-darktooth")
+            vim.cmd("colorscheme base16-everforest")
 
             -- Set transparent background (should be called after colorscheme setup)
             -- vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
