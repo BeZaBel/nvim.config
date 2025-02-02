@@ -234,13 +234,21 @@ return {
     --         -- vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "NONE" })
     --     end,
     -- },
+    -- {
+    --     "nvimdev/zephyr-nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     config = function()
+    --         require("zephyr")
+    --         vim.cmd("colorscheme zephyr")
+    --     end,
+    -- },
     {
-        "nvimdev/zephyr-nvim",
+        "nyngwang/nvimgelion",
         lazy = false,
         priority = 1000,
         config = function()
-            require("zephyr")
-            vim.cmd("colorscheme zephyr")
+            vim.cmd("colorscheme nvimgelion")
         end,
     },
     {
