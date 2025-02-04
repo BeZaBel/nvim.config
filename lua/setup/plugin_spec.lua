@@ -209,40 +209,6 @@ return {
         fg = "python",
         keys = require("setup.iron").keys,
     },
-    -- {
-    --     "RRethy/base16-nvim",
-    --     lazy = false,
-    --     priority = 1000,
-    --     config = function()
-    --         require("base16-colorscheme").with_config({
-    --             telescope = true,
-    --             cmp = true,
-    --         })
-    --         vim.cmd("colorscheme base16-everforest")
-    --
-    --         -- Set transparent background (should be called after colorscheme setup)
-    --         -- vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
-    --         -- vim.api.nvim_set_hl(0, "NormalNC", { bg = "NONE" })
-    --         -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
-    --         -- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "NONE" })
-    --         -- vim.api.nvim_set_hl(0, "MsgArea", { bg = "NONE" })
-    --         -- vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE" })
-    --
-    --         -- Optional: For better transparency consistency
-    --         -- vim.api.nvim_set_hl(0, "LineNr", { bg = "NONE" })
-    --         -- vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
-    --         -- vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "NONE" })
-    --     end,
-    -- },
-    -- {
-    --     "nvimdev/zephyr-nvim",
-    --     lazy = false,
-    --     priority = 1000,
-    --     config = function()
-    --         require("zephyr")
-    --         vim.cmd("colorscheme zephyr")
-    --     end,
-    -- },
     {
         "nyngwang/nvimgelion",
         lazy = false,
@@ -294,4 +260,14 @@ return {
         "sphamba/smear-cursor.nvim",
         opts = {},
     },
+    -- {
+    --     "epwalsh/obsidian.nvim",
+    --     version = "*",
+    --     lazy = true,
+    --     ft = "markdown",
+    --     dependencies = {
+    --         "nvim-lua/plenary.nvim",
+    --     },
+    --     config = require("setup.obsidian").setup,
+    -- },
 }
