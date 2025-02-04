@@ -260,14 +260,15 @@ return {
         "sphamba/smear-cursor.nvim",
         opts = {},
     },
-    -- {
-    --     "epwalsh/obsidian.nvim",
-    --     version = "*",
-    --     lazy = true,
-    --     ft = "markdown",
-    --     dependencies = {
-    --         "nvim-lua/plenary.nvim",
-    --     },
-    --     config = require("setup.obsidian").setup,
-    -- },
+    {
+        "epwalsh/obsidian.nvim",
+        version = "*",
+        lazy = true,
+        ft = "markdown",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        opts = {},
+        config = require("setup.obsidian").setup,
+    },
 }
