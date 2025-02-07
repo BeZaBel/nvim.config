@@ -213,10 +213,18 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    require("setup.plugin_spec"),
-}, {
+    spec = {
+        require("setup.plugin_spec"),
+    },
+    install = {
+        colorscheme = { "sorbet" },
+    },
     change_detection = {
         notify = false,
+    },
+    checker = {
+        -- automatically check for plugin updates
+        enabled = false,
     },
     ui = {
         icons = vim.g.have_nerd_font and {} or {

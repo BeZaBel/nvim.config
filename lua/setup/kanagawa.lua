@@ -1,8 +1,21 @@
 return {
     setup = function(active)
         require("kanagawa").setup({
+            compile = true,
             transparent = false,
             undercurl = true,
+            commentStyle = { italic = true },
+            functionStyle = {},
+            keywordStyle = { italic = true },
+            dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+            terminalColors = true,
+            statementStyle = { bold = true },
+            typeStyle = {},
+            theme = "dragon", -- Load "wave" theme when 'background' option is not set
+            background = { -- map the value of 'background' option to a theme
+                dark = "wave", -- try "dragon" !
+                light = "lotus",
+            },
             colors = {
                 theme = {
                     all = {
@@ -38,7 +51,7 @@ return {
         })
         if active then
             -- wave, dragon, lotus
-            vim.cmd.colorscheme("kanagawa-wave")
+            vim.cmd.colorscheme("kanagawa")
         end
     end,
 }

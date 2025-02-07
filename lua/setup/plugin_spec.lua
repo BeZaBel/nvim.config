@@ -210,14 +210,6 @@ return {
         keys = require("setup.iron").keys,
     },
     {
-        "nyngwang/nvimgelion",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            vim.cmd("colorscheme nvimgelion")
-        end,
-    },
-    {
         "atiladefreitas/lazyclip",
         config = function()
             require("lazyclip").setup()
@@ -270,5 +262,19 @@ return {
         },
         opts = {},
         config = require("setup.obsidian").setup,
+    },
+    -- {
+    --     "nyngwang/nvimgelion",
+    --     lazy = false,
+    --     priority = 1000,
+    -- config = function()
+    --     vim.cmd("colorscheme nvimgelion")
+    -- end,
+    -- },
+    {
+        "rebelot/kanagawa.nvim",
+        lazy = false,
+        priority = 1000,
+        config = require("setup.kanagawa").setup,
     },
 }
