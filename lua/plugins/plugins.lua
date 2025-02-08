@@ -38,6 +38,7 @@ return {
             },
         },
         config = require("setup.telescope").setup,
+        keys = require("setup.telescope").keys,
     },
     {
         "nvim-lua/plenary.nvim",
@@ -68,7 +69,9 @@ return {
     },
     {
         "nvimdev/lspsaga.nvim",
+        lazy = false,
         config = require("setup.lspsaga").setup,
+        keys = require("setup.lspsaga").keys,
     },
     {
         "williamboman/mason.nvim",
@@ -80,8 +83,10 @@ return {
     },
     {
         "stevearc/oil.nvim",
+        lazy = false,
         opts = {},
         config = require("setup.oil").setup,
+        keys = require("setup.oil").keys,
     },
     {
         "folke/flash.nvim",
@@ -248,10 +253,6 @@ return {
             })
         end,
     },
-    -- {
-    --     "sphamba/smear-cursor.nvim",
-    --     opts = {},
-    -- },
     {
         "epwalsh/obsidian.nvim",
         version = "*",
@@ -262,15 +263,8 @@ return {
         },
         opts = {},
         config = require("setup.obsidian").setup,
+        keys = require("setup.obsidian").keys,
     },
-    -- {
-    --     "nyngwang/nvimgelion",
-    --     lazy = false,
-    --     priority = 1000,
-    -- config = function()
-    --     vim.cmd("colorscheme nvimgelion")
-    -- end,
-    -- },
     {
         "rebelot/kanagawa.nvim",
         lazy = false,

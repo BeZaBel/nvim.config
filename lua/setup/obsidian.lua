@@ -1,6 +1,6 @@
-local s = {}
+local M = {}
 
-s.setup = function()
+function M.setup()
     require("obsidian").setup({
         workspaces = {
             {
@@ -79,13 +79,37 @@ s.setup = function()
     })
 end
 
--- [[
--- local map = vim.keymap.set
--- map("n", "<leader>on", ":ObsidianNew ", { desc = [[Create a new note but give it a name before]]})
--- map("n", "<leader>or", "<cmd>ObsidianRename<cr>", { desc = [[Rename notes in current buffer]] })
--- map("n", "<leader>os", "<cmd>ObsidianSearch<cr>", { desc = [[Grep in vault for notes]] })
--- map("n", "<leader>ob", "<cmd>ObsidianBackLinks<cr>", { desc = [[Show backlinks to note]] })
--- map("n", "<leader>oo", "<cmd>ObsidianOpen<cr>", { desc = [[Open file in Obsidian]] })
--- ]]
+M.keys = {
+    {
+        "<leader>on",
+        ":ObsidianNew ",
+        desc = "Create a new note with a name",
+    },
+    {
+        "<leader>or",
+        "<CMD>ObsidianRename<CMD>",
+        desc = "Rename current buffer note",
+    },
+    {
+        "<leader>os",
+        "<CMD>ObsidianSearch<CR>",
+        desc = "Grep in vault for notes",
+    },
+    {
+        "<leader>ob",
+        "<CMD>ObsidianBacklinks<CR>",
+        desc = "Show backlinks to note",
+    },
+    {
+        "<leader>oo",
+        "<CMD>ObsidianOpen<CR>",
+        desc = "Open current file in obsidian",
+    },
+    {
+        "<leader>ot",
+        "<CMD>ObsidianTags<CR>",
+        desc = "Show tags",
+    },
+}
 
-return s
+return M
