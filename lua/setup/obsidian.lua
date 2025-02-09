@@ -87,7 +87,7 @@ M.keys = {
     },
     {
         "<leader>or",
-        "<CMD>ObsidianRename<CMD>",
+        "<CMD>ObsidianRename<CR>",
         desc = "Rename current buffer note",
     },
     {
