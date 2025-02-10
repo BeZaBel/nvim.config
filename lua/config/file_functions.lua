@@ -19,7 +19,7 @@ function M.create_general_note()
         vim.ui.input({ prompt = "New markdown note: " }, function(name)
             if name then
                 vim.cmd.enew()
-                vim.cmd.normal("O# " .. name)
+                -- vim.cmd.normal("O# " .. name)
                 vim.cmd.write("./general/" .. name .. ".md")
                 vim.cmd.normal("2o")
             else

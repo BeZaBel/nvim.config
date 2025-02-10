@@ -37,7 +37,7 @@ function M.setup()
         sort_by = "modified",
         sort_reverserd = true,
         open_notes_in = "current",
-        disable_frontmatter = false,
+        disable_frontmatter = true,
         note_frontmatter_func = function(note)
             if note.title then
                 note:add_alias(note.title)
