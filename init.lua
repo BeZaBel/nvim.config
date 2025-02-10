@@ -1,15 +1,3 @@
--- ╭─────────────────────────────────────────────────────╮
--- │  ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓ │
--- │  ██ ▀█   █ ▓█   ▀ ▒██▒  ██▒▓██░   █▒▓██▒▓██▒▀█▀ ██▒ │
--- │ ▓██  ▀█ ██▒▒███   ▒██░  ██▒ ▓██  █▒░▒██▒▓██    ▓██░ │
--- │ ▓██▒  ▐▌██▒▒▓█  ▄ ▒██   ██░  ▒██ █░░░██░▒██    ▒██  │
--- │ ▒██░   ▓██░░▒████▒░ ████▓▒░   ▒▀█░  ░██░▒██▒   ░██▒ │
--- │ ░ ▒░   ▒ ▒ ░░ ▒░ ░░ ▒░▒░▒░    ░ ▐░  ░▓  ░ ▒░   ░  ░ │
--- │ ░ ░░   ░ ▒░ ░ ░  ░  ░ ▒ ▒░    ░ ░░   ▒ ░░  ░      ░ │
--- │    ░   ░ ░    ░   ░ ░ ░ ▒       ░░   ▒ ░░      ░    │
--- │          ░    ░  ░    ░ ░        ░   ░         ░    │
--- │                                 ░                   │
--- ╰─────────────────────────────────────────────────────╯
 -- ╭──────────────────────────────────────╮
 -- │ Basic settings, remaps and utilities │
 -- ╰──────────────────────────────────────╯
@@ -20,7 +8,6 @@ vim.cmd("packadd termdebug")
 local gpt = vim.g
 local opt = vim.o
 local wpt = vim.wo
-local map = vim.keymap.set
 
 gpt.mapleader = " "
 gpt.maplocalleader = " "
@@ -81,117 +68,22 @@ gpt.netrw_browse_split = 0
 gpt.netrw_liststyle = 3
 gpt.netrw_altv = 1
 
--- ╭──────────╮
--- │ Movement │
--- ╰──────────╯
-map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-map("i", "<C-k>", "<right>", { noremap = true })
-map("i", "<C-j>", "<left>", { noremap = true })
+-- ┌─────────┐
+-- │ Keymaps │
+-- └─────────┘
+require("config.keymaps")
 
--- ╭─────────────────╮
--- │ File operations │
--- ╰─────────────────╯
-local ff = require("file_functions")
+-- ┌──────────┐
+-- │ Autocmds │
+-- └──────────┘
+require("config.autocmds")
 
-map("n", "<leader>fs", vim.cmd.w, { desc = "Save file", noremap = true, silent = true })
-map("n", "<leader>fw", vim.cmd.wq, { desc = "Save and quit", noremap = true, silent = true })
-map("n", "<leader>fq", vim.cmd.quit, { desc = "Exit vim", noremap = true, silent = true })
-map("n", "<leader>ft", vim.cmd.tabnew, { desc = "New file in a tab", noremap = true, silent = true })
-map("n", "<leader>fn", vim.cmd.enew, { desc = "New file", noremap = true, silent = true })
-map("n", "<leader>fm", ff.new_named_file, { desc = "New named file", noremap = true, silent = true })
-map("n", "<leader>fa", ff.save_as, { desc = "Save as", noremap = true, silent = true })
-map("n", "<leader>fop", ff.new_personal, { desc = "New personal note", noremap = true, silent = true })
-map(
-    "n",
-    "<leader>fog",
-    ff.create_general_note,
-    { desc = "New note in general directory", noremap = true, silent = true }
-)
-map("n", "<leader>foe", ff.new_escrito, { desc = "New note in escritos directory", noremap = true, silent = true })
+-- ┌────────────┐
+-- │ Statusline │
+-- └────────────┘
+require("config.statusline")
 
--- ╭─────────────────────────────────────────────╮
--- │ Buffer and splits management and navigation │
--- ╰─────────────────────────────────────────────╯
-map("n", "<leader>W", "<CMD>bd!<CR>", { desc = "Remove current buffer" })
-map("n", "<C-A-k>", "<cmd>bprev<cr>", { desc = "Move to previous buffer" })
-map("n", "<C-A-j>", "<cmd>bnext<cr>", { desc = "Move to next buffer" })
-
--- ╭────────────────────╮
--- │ Some misc keybinds │
--- ╰────────────────────╯
-map("i", "<C-A-m>", "- [ ] ")
-map("n", "<leader>om", "i- [ ] ")
-map("n", "<leader>od", function()
-    vim.cmd.execute('"normal idate\\<Tab>\\<CR>"')
-end, { desc = "Insert date" })
-
--- ╭──────────────────╮
--- │ Inside terminals │
--- ╰──────────────────╯
-map("t", "<C-A-c>", [[<C-\><C-n>]])
-map("t", "<Esc>", [[<C-\><C-n>]])
-
--- ╭────────────╮
--- │ Move lines │
--- ╰────────────╯
-map("n", "<C-k>", "<CMD>m-2<CR>", { noremap = true })
-map("n", "<C-j>", "<CMD>m+1<CR>", { noremap = true })
-map("v", "<C-k>", ":m '<-2<cr>gv=gv", { noremap = true, silent = true })
-map("v", "<C-j>", ":m '>+1<cr>gv=gv", { noremap = true, silent = true })
-
--- ╭────────────────────────────────────────╮
--- │ Replace all instances of selected word │
--- ╰────────────────────────────────────────╯
-map("v", "<leader>r", '"hy:%s/<C-r>h//g<left><left>', {
-    desc = [[Replace all
-instances of selected word]],
-})
-
--- ╭───────────────────╮
--- │ Highlight on yank │
--- ╰───────────────────╯
-local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
-vim.api.nvim_create_autocmd("TextYankPost", {
-    callback = function()
-        vim.highlight.on_yank()
-    end,
-    group = highlight_group,
-    pattern = "*",
-})
-
--- ╭────────────────────────╮
--- │ Numbers on help buffer │
--- ╰────────────────────────╯
-local helpnums = vim.api.nvim_create_augroup("HelpNums", { clear = true })
-vim.api.nvim_create_autocmd("filetype", {
-    group = helpnums,
-    pattern = "help",
-    callback = function()
-        wpt.number = true
-        wpt.relativenumber = true
-    end,
-})
-
--- ╭────────────────────╮
--- │ Vanilla statusline │
--- ╰────────────────────╯
-
-local function set_status()
-    local parts = {
-        "  : %t %m",
-        "%=",
-        " : %{expand('%:p:h')} ",
-        "| ",
-        "󰠷 : %l/%L ",
-        "󰠵: %v ",
-        "| ",
-        "󰠞 : %p%% ",
-    }
-    return table.concat(parts, "")
-end
-
-opt.statusline = set_status()
-
--- Lazy
-require("config.init")
+-- ┌──────┐
+-- │ Lazy │
+-- └──────┘
+require("plugins.init")

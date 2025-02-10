@@ -37,16 +37,15 @@ function M.setup()
         sort_by = "modified",
         sort_reverserd = true,
         open_notes_in = "current",
-        disable_frontmatter = true,
+        disable_frontmatter = false,
         note_frontmatter_func = function(note)
             if note.title then
                 note:add_alias(note.title)
             end
 
             local out = {
-                id = note.id,
-                aliases = note.aliases,
                 tags = note.tags,
+                aliases = note.aliases,
             }
 
             if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then

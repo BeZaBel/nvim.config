@@ -80,7 +80,7 @@ M.opts = {
                     key = "m",
                     desc = "New named file",
                     action = function()
-                        require("file_functions").new_named_file()
+                        require("config.file_functions").new_named_file()
                     end,
                 },
                 {
@@ -88,7 +88,7 @@ M.opts = {
                     key = "g",
                     desc = "New general note",
                     action = function()
-                        require("file_functions").create_general_note()
+                        require("config.file_functions").create_general_note()
                     end,
                 },
                 {
@@ -96,13 +96,13 @@ M.opts = {
                     key = "e",
                     desc = "New writing",
                     action = function()
-                        require("file_functions").new_escrito()
+                        require("config.file_functions").new_escrito()
                     end,
                 },
                 { icon = " ", key = "l", desc = "Open file explorer", action = "<CMD>Oil<CR>" },
                 {
                     icon = " ",
-                    key = "g",
+                    key = "f",
                     desc = "Find Text",
                     action = ":lua Snacks.dashboard.pick('live_grep')",
                 },

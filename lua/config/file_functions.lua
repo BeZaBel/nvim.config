@@ -47,7 +47,7 @@ function M.new_personal()
     end
 end
 
-function M.new_escrito()
+function M.new_writing()
     local general = vim.fn.isdirectory("./escritos")
     if general == 0 then
         print("Not in notes directory")
