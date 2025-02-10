@@ -111,9 +111,7 @@ return {
         "stevearc/conform.nvim",
         event = { "BufWritePre" },
         cmd = { "ConformInfo" },
-        config = function()
-            require("setup.conform").setup()
-        end,
+        config = require("setup.conform").setup,
     },
     {
         "kylechui/nvim-surround",
@@ -133,20 +131,6 @@ return {
         opts = {},
     },
     {
-        "ej-shafran/compile-mode.nvim",
-        branch = "latest",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            { "m00qek/baleia.nvim", tag = "v1.3.0" },
-        },
-        config = function()
-            ---@type CompileModeOpts
-            vim.g.compile_mode = {
-                baleia_setup = true,
-            }
-        end,
-    },
-    {
         "folke/noice.nvim",
         event = "VeryLazy",
         dependencies = {
@@ -157,15 +141,7 @@ return {
     {
         "stevearc/dressing.nvim",
         event = "VeryLazy",
-        config = function()
-            require("dressing").setup({
-                input = {
-                    title_pos = "center",
-                    relative = "win",
-                    prefer_width = 0.4,
-                },
-            })
-        end,
+        config = require("setup.dressing").setup,
     },
     {
         "MeanderingProgrammer/render-markdown.nvim",
@@ -194,12 +170,6 @@ return {
         init = require("setup.snacks").init,
     },
     {
-        "folke/todo-comments.nvim",
-        event = "VimEnter",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        opts = { signs = false },
-    },
-    {
         "numToStr/comment.nvim",
         opts = {},
     },
@@ -225,33 +195,7 @@ return {
     },
     {
         "karb94/neoscroll.nvim",
-        config = function()
-            require("neoscroll").setup({
-                mappings = { -- Keys to be mapped to their corresponding default scrolling animation
-                    "<C-u>",
-                    "<C-d>",
-                    "<C-b>",
-                    "<C-f>",
-                    "<C-y>",
-                    "<C-e>",
-                    "zt",
-                    "zz",
-                    "zb",
-                },
-                hide_cursor = false, -- Hide cursor while scrolling
-                stop_eof = true, -- Stop at <EOF> when scrolling downwards
-                respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-                cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-                easing = "linear", -- Default easing function
-                pre_hook = nil, -- Function to run before the scrolling animation starts
-                post_hook = nil, -- Function to run after the scrolling animation ends
-                performance_mode = false, -- Disable "Performance Mode" on all buffers.
-                ignored_events = { -- Events ignored while scrolling
-                    "WinScrolled",
-                    "CursorMoved",
-                },
-            })
-        end,
+        config = require("setup.neoscroll").setup,
     },
     {
         "epwalsh/obsidian.nvim",
