@@ -16,15 +16,28 @@ function M.create_general_note()
     if general == 0 then
         print("Not in notes directory")
     else
-        vim.ui.input({ prompt = "New markdown note: " }, function(name)
-            if name then
-                vim.cmd.enew()
-                vim.cmd.normal("O# " .. name)
-                vim.cmd.write("./general/" .. name .. ".md")
-                vim.cmd.normal("2o")
-            else
-                vim.api.nvim_err_writeln("No name given. No file created.")
-            end
+        vim.ui.input({ prompt = "New markdown note name: " }, function(name)
+            vim.ui.input({ prompt = "Note title: " }, function(title)
+                if name then
+                    vim.cmd.enew()
+                    vim.cmd.normal("i---")
+                    vim.cmd.normal("otags:")
+                    vim.cmd.normal("o\t-")
+                    vim.cmd.normal("o\bprev:")
+                    vim.cmd.normal("o\t- [[]]")
+                    vim.cmd.normal("o\bnext:")
+                    vim.cmd.normal("o\t- [[]]")
+                    vim.cmd.normal("o\btitle:")
+                    vim.cmd.normal('o\t- "' .. title .. '"')
+                    vim.cmd.normal("o\b---")
+                    vim.cmd.normal("o")
+                    vim.cmd.normal("o# " .. title)
+                    vim.cmd.write("./general/" .. name .. ".md")
+                    vim.cmd.normal("2o")
+                else
+                    vim.api.nvim_err_writeln("No name given. No file created.")
+                end
+            end)
         end)
     end
 end
