@@ -215,4 +215,11 @@ return {
         priority = 1000,
         config = require("setup.kanagawa").setup,
     },
+    {
+        "echasnovski/mini.nvim",
+        version = false,
+        config = function()
+            require("mini.ai").setup()
+        end,
+    },
 }

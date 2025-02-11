@@ -78,12 +78,12 @@ require("config.keymaps")
 -- └──────────┘
 require("config.autocmds")
 
--- ┌────────────┐
--- │ Statusline │
--- └────────────┘
-require("config.statusline")
-
 -- ┌──────┐
 -- │ Lazy │
 -- └──────┘
 require("plugins.init")
+
+-- ┌────────────┐
+-- │ Statusline │
+-- └────────────┘
+require("config.statusline")
