@@ -1,5 +1,7 @@
 local M = {}
 
+local h = require("config.helpers")
+
 function M.new_named_file()
     vim.ui.input({ prompt = "File (Give file extension): " }, function(name)
         if name then
@@ -12,58 +14,48 @@ function M.new_named_file()
 end
 
 function M.create_general_note()
+    -- Check if we are in the notes directory
     if vim.fn.isdirectory("./general") == 0 then
         return print("Not in notes directory")
     end
 
-    vim.ui.input({ prompt = "New markdown note name: " }, function(name)
-        if not name then
-            return vim.api.nvim_err_writeln("No name given")
+    -- Prompt for the note name
+    local name = h.prompt_input("New markdown note name: ", "")
+    if name == "" then
+        return vim.api.nvim_err_writeln("Operation canceled: No name given")
+    end
+
+    -- Check if the file already exists
+    local filepath = "./general/" .. name .. ".md"
+    if h.file_exists(filepath) then
+        if not h.confirm("File already exists. Overwrite?") then
+            return vim.api.nvim_err_writeln("Operation canceled: User chose not to overwrite")
         end
+    end
 
-        vim.ui.input({ prompt = "Note title (optional): " }, function(title)
-            vim.ui.input({ prompt = "Tags (comma-separated, optional): " }, function(tags)
-                local lines = {
-                    "---",
-                    "tags:",
-                }
+    -- Prompt for the note title (optional)
+    local title = h.prompt_input("Note title (optional): ", name)
+    if title == "" then
+        title = name
+    end
 
-                -- Process tags
-                if tags and tags ~= "" then
-                    for tag in string.gmatch(tags, "([^,]+)") do
-                        table.insert(lines, string.format("  - %s", tag:gsub("^%s*(.-)%s*$", "%1")))
-                    end
-                else
-                    table.insert(lines, "  - ")
-                end
+    -- Prompt for tags (optional)
+    local tags = h.prompt_input("Tags (space-separated, optional): ", "")
 
-                -- Common frontmatter
-                vim.list_extend(lines, {
-                    "prev:",
-                    "  - [[]]",
-                    "next:",
-                    "  - [[]]",
-                })
+    -- Confirm adding prev and next sections (optional)
+    local add_prev = h.confirm("Add 'prev' section? (Y/n)")
+    local add_next = h.confirm("Add 'next' section? (Y/n)")
 
-                -- Add title if provided
-                if title and title ~= "" then
-                    table.insert(lines, "title:")
-                    table.insert(lines, string.format('  - "%s"', title))
-                end
+    -- Create the markdown content
+    local lines = h.create_markdown_content(title, tags, add_prev, add_next)
 
-                -- Document body
-                vim.list_extend(lines, {
-                    "---",
-                    "",
-                    "# " .. (title and title ~= "" and title or name),
-                })
+    -- Write the content to a new buffer
+    vim.cmd.enew()
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
 
-                vim.cmd.enew()
-                vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
-                vim.cmd.write("./general/" .. name .. ".md")
-            end)
-        end)
-    end)
+    -- Save the file
+    vim.cmd.write(filepath)
+    print("Note created successfully: " .. filepath)
 end
 
 function M.new_personal()
