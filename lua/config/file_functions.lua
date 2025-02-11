@@ -12,34 +12,58 @@ function M.new_named_file()
 end
 
 function M.create_general_note()
-    local general = vim.fn.isdirectory("./general")
-    if general == 0 then
-        print("Not in notes directory")
-    else
-        vim.ui.input({ prompt = "New markdown note name: " }, function(name)
-            vim.ui.input({ prompt = "Note title: " }, function(title)
-                if name then
-                    vim.cmd.enew()
-                    vim.cmd.normal("i---")
-                    vim.cmd.normal("otags:")
-                    vim.cmd.normal("o\t-")
-                    vim.cmd.normal("o\bprev:")
-                    vim.cmd.normal("o\t- [[]]")
-                    vim.cmd.normal("o\bnext:")
-                    vim.cmd.normal("o\t- [[]]")
-                    vim.cmd.normal("o\btitle:")
-                    vim.cmd.normal('o\t- "' .. title .. '"')
-                    vim.cmd.normal("o\b---")
-                    vim.cmd.normal("o")
-                    vim.cmd.normal("o# " .. title)
-                    vim.cmd.write("./general/" .. name .. ".md")
-                    vim.cmd.normal("2o")
+    if vim.fn.isdirectory("./general") == 0 then
+        return print("Not in notes directory")
+    end
+
+    vim.ui.input({ prompt = "New markdown note name: " }, function(name)
+        if not name then
+            return vim.api.nvim_err_writeln("No name given")
+        end
+
+        vim.ui.input({ prompt = "Note title (optional): " }, function(title)
+            vim.ui.input({ prompt = "Tags (comma-separated, optional): " }, function(tags)
+                local lines = {
+                    "---",
+                    "tags:",
+                }
+
+                -- Process tags
+                if tags and tags ~= "" then
+                    for tag in string.gmatch(tags, "([^,]+)") do
+                        table.insert(lines, string.format("  - %s", tag:gsub("^%s*(.-)%s*$", "%1")))
+                    end
                 else
-                    vim.api.nvim_err_writeln("No name given. No file created.")
+                    table.insert(lines, "  - ")
                 end
+
+                -- Common frontmatter
+                vim.list_extend(lines, {
+                    "prev:",
+                    "  - [[]]",
+                    "next:",
+                    "  - [[]]",
+                })
+
+                -- Add title if provided
+                if title and title ~= "" then
+                    table.insert(lines, "title:")
+                    table.insert(lines, string.format('  - "%s"', title))
+                end
+
+                -- Document body
+                vim.list_extend(lines, {
+                    "---",
+                    "",
+                    "# " .. (title and title ~= "" and title or name),
+                })
+
+                vim.cmd.enew()
+                vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+                vim.cmd.write("./general/" .. name .. ".md")
             end)
         end)
-    end
+    end)
 end
 
 function M.new_personal()
