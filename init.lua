@@ -43,10 +43,6 @@ opt.wrap = true
 opt.pumheight = 10
 opt.laststatus = 3
 opt.showcmd = true
-opt.shiftwidth = 2
-opt.tabstop = 2
-opt.softtabstop = 2
-opt.expandtab = true
 opt.smartindent = true
 opt.showmode = false
 opt.scrolloff = 2
@@ -72,6 +68,10 @@ wpt.fillchars = "eob: ,vert:│"
 
 vim.schedule(function()
   opt.clipboard = "unnamedplus"
+  opt.shiftwidth = 2
+  opt.tabstop = 2
+  opt.softtabstop = 2
+  opt.expandtab = true
 end)
 
 -- ╭────────────────────────────────────╮
