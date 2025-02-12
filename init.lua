@@ -1,7 +1,7 @@
 -- ╭──────────────────────────────────────╮
 -- │ Basic settings, remaps and utilities │
 -- ╰──────────────────────────────────────╯
-vim.cmd("filetype plugin on")
+vim.filetype.add({ enable = true })
 vim.cmd("packadd termdebug")
 -- vim.cmd("colorscheme sorbet")
 
@@ -29,12 +29,12 @@ opt.wrap = true
 opt.pumheight = 10
 opt.laststatus = 3
 opt.showcmd = true
-opt.tabstop = 4
+opt.tabstop = 2
 opt.expandtab = true
-opt.shiftwidth = 4
+opt.shiftwidth = 2
 opt.smartindent = true
 opt.showmode = false
-opt.scrolloff = 0
+opt.scrolloff = 2
 opt.sidescrolloff = 8
 opt.splitbelow = true
 opt.splitright = true
@@ -56,7 +56,7 @@ wpt.signcolumn = "yes"
 wpt.fillchars = "eob: ,vert:│"
 
 vim.schedule(function()
-    opt.clipboard = "unnamedplus"
+  opt.clipboard = "unnamedplus"
 end)
 
 -- ╭────────────────────────────────────╮

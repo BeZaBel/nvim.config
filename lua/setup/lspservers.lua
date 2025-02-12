@@ -1,51 +1,51 @@
 local servers = {
-    lua_ls = {
-        settings = {
-            Lua = {
-                completion = {
-                    callSnippet = "Replace",
-                },
-            },
+  lua_ls = {
+    settings = {
+      Lua = {
+        completion = {
+          callSnippet = "Replace",
         },
+      },
     },
-    marksman = {},
-    markdown_oxide = {},
+  },
+  marksman = {},
+  markdown_oxide = {},
+  clangd = {
     clangd = {
-        clangd = {
-            filetypes = {
-                "c",
-                "cpp",
-            },
-            root_pattern = {
-                ".clangd-format",
-            },
-        },
+      filetypes = {
+        "c",
+        "cpp",
+      },
+      root_pattern = {
+        ".clangd-format",
+      },
     },
-    r_language_server = {},
+  },
+  r_language_server = {},
+  texlab = {
     texlab = {
-        texlab = {
-            build = {
-                executable = "latexmk",
-                args = {
-                    "-pdf",
-                    -- "compile",
-                    "%f",
-                },
-                onSave = true,
-            },
+      build = {
+        executable = "latexmk",
+        args = {
+          "-pdf",
+          -- "compile",
+          "%f",
         },
+        onSave = true,
+      },
     },
+  },
+  ltex = {
     ltex = {
-        ltex = {
-            language = "es",
-            enabled = false,
-        },
-        filetypes = {
-            "bib",
-            "tex",
-        },
+      language = "es",
+      enabled = false,
     },
-    pylsp = {},
+    filetypes = {
+      "bib",
+      "tex",
+    },
+  },
+  pylsp = {},
 }
 
 return servers

@@ -26,10 +26,10 @@ map("n", "<leader>fm", ff.new_named_file, { desc = "New named file", noremap = t
 map("n", "<leader>fa", ff.save_as, { desc = "Save as", noremap = true, silent = true })
 map("n", "<leader>fop", ff.new_personal, { desc = "New personal note", noremap = true, silent = true })
 map(
-    "n",
-    "<leader>fog",
-    ff.create_general_note,
-    { desc = "New note in general directory", noremap = true, silent = true }
+  "n",
+  "<leader>fog",
+  ff.create_general_note,
+  { desc = "New note in general directory", noremap = true, silent = true }
 )
 map("n", "<leader>foe", ff.new_writing, { desc = "New note in escritos directory", noremap = true, silent = true })
 
@@ -46,7 +46,7 @@ map("n", "<C-A-j>", "<cmd>bnext<cr>", { desc = "Move to next buffer" })
 map("i", "<C-A-m>", "- [ ] ")
 map("n", "<leader>om", "i- [ ] ")
 map("n", "<leader>od", function()
-    vim.cmd.execute('"normal idate\\<Tab>\\<CR>"')
+  vim.cmd.execute('"normal idate\\<Tab>\\<CR>"')
 end, { desc = "Insert date" })
 
 -- ╭──────────────────╮
@@ -67,6 +67,6 @@ map("v", "<C-j>", ":m '>+1<cr>gv=gv", { noremap = true, silent = true })
 -- │ Replace all instances of selected word │
 -- ╰────────────────────────────────────────╯
 map("v", "<leader>r", '"hy:%s/<C-r>h//g<left><left>', {
-    desc = [[Replace all
+  desc = [[Replace all
 instances of selected word]],
 })
