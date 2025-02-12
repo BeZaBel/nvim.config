@@ -96,7 +96,7 @@ require("config.autocmds")
 -- ┌──────┐
 -- │ Lazy │
 -- └──────┘
-require("plugins.init")
+require("config.lazy")
 
 -- ┌────────────┐
 -- │ Statusline │
