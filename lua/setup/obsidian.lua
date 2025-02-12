@@ -55,6 +55,9 @@ function M.setup()
       end
       return out
     end,
+    templates = {
+      folder = "templates",
+    },
     attachments = {
       img_folder = "assets",
     },
@@ -108,6 +111,11 @@ M.keys = {
     "<leader>ot",
     "<CMD>ObsidianTags<CR>",
     desc = "Show tags",
+  },
+  {
+    "<leader>oT",
+    "<CMD>ObsidianTemplate<CR>",
+    desc = "Insert template",
   },
 }
 
