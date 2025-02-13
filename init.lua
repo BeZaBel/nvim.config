@@ -26,6 +26,11 @@ local wpt = vim.wo
 gpt.mapleader = " "
 gpt.maplocalleader = " "
 gpt.have_nerd_font = true
+gpt.markdown_recommended_style = 0
+opt.shiftwidth = 2
+opt.tabstop = 2
+opt.softtabstop = 2
+opt.expandtab = true
 opt.colorcolumn = "80"
 opt.path = "**"
 opt.syntax = "on"
@@ -68,10 +73,6 @@ wpt.fillchars = "eob: ,vert:│"
 
 vim.schedule(function()
   opt.clipboard = "unnamedplus"
-  opt.shiftwidth = 2
-  opt.tabstop = 2
-  opt.softtabstop = 2
-  opt.expandtab = true
 end)
 
 -- ╭────────────────────────────────────╮
