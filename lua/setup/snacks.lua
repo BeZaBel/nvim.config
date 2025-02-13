@@ -1,5 +1,7 @@
 local M = {}
 
+local cwd = vim.fn.system("pwd")
+
 M.opts = {
   bigfile = { enabled = true },
   bufdelete = { enabled = false },
@@ -60,7 +62,8 @@ M.opts = {
     enabled = true,
     preset = {
       header = {
-        [[
+        string.format(
+          [[
             ╭────────────────────────────────────╮
             │  ███▄    █ ██▒   █▓ ██▓ ███▄ ▄███▓ │
             │  ██ ▀█   █▓██░   █▒▓██▒▓██▒▀█▀ ██▒ │
@@ -72,8 +75,13 @@ M.opts = {
             │    ░   ░ ░     ░░   ▒ ░░      ░    │
             │          ░      ░   ░         ░    │
             │                ░                   │
-            ╰────────────────────────────────────╯
+            ╰─────┬────────────────────────┬─────╯
+                  │ Current directory  :  │
+                  ╰────────────────────────╯
+                    %s
         ]],
+          cwd
+        ),
       },
       keys = {
         { icon = " ", key = "n", desc = "New file", action = "<CMD>ene<CR>" },
