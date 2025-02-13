@@ -90,7 +90,7 @@ M.opts = {
           key = "g",
           desc = "New general note",
           action = function()
-            require("config.file_functions").create_general_note()
+            require("config.file_functions").create_note("./general/")
           end,
         },
         {
@@ -98,7 +98,7 @@ M.opts = {
           key = "e",
           desc = "New writing",
           action = function()
-            require("config.file_functions").new_escrito()
+            require("config.file_functions").create_note("./escritos/")
           end,
         },
         { icon = " ", key = "l", desc = "Open file explorer", action = "<CMD>Oil<CR>" },

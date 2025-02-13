@@ -13,10 +13,14 @@ function M.new_named_file()
   end)
 end
 
-function M.create_general_note()
+function M.create_note(location)
   -- Check if we're in an Obsidian vault
   if vim.fn.isdirectory(".obsidian") == 0 then
     return vim.api.nvim_err_writeln("Not in an Obsidian vault")
+  end
+
+  if location ~= "./general/" and location ~= "./escritos/" then
+    return vim.api.nvim_err_writeln("Invalid location")
   end
 
   -- Prompt for the note name
@@ -25,63 +29,29 @@ function M.create_general_note()
     return vim.api.nvim_err_writeln("Operation canceled: No name given")
   end
 
-  local filepath = "./general/" .. name .. ".md"
-  local file_exists = h.file_exists(filepath)
+  local filepath = location .. name .. ".md"
+  -- Ensure the ./general/ directory exists
+  if vim.fn.isdirectory(location) == 0 then
+    vim.fn.mkdir(location, "p")
+  end
 
+  local file_exists = h.file_exists(filepath)
   -- Handle existing file case
   if file_exists then
     if not h.confirm("File already exists. Overwrite?") then
       -- Open existing file instead of creating new
       vim.cmd("edit " .. vim.fn.fnameescape(filepath))
-      print("Opened " .. filepath)
+      print("Existing file opened: " .. filepath)
       return
     end
   end
 
-  -- Create new file (empty buffer)
   vim.cmd.enew()
 
-  -- Write with force if overwriting
-  local write_cmd = file_exists and "write! " or "write "
+  -- Create or overgwrite the file
+  local write_cmd = file_exists and "write!" or "write"
   vim.cmd(write_cmd .. vim.fn.fnameescape(filepath))
-
-  print("Note created successfully: " .. filepath)
-end
-
-function M.new_personal()
-  local general = vim.fn.isdirectory("./personal")
-  if general == 0 then
-    print("Not in notes directory")
-  else
-    vim.ui.input({ prompt = "New personal note: " }, function(name)
-      if name then
-        vim.cmd.enew()
-        vim.cmd.normal("O# " .. name)
-        vim.cmd.write("./personal/" .. name .. ".md")
-        vim.cmd.normal("2o")
-      else
-        vim.api.nvim_err_writeln("No name given. No file created.")
-      end
-    end)
-  end
-end
-
-function M.new_writing()
-  local general = vim.fn.isdirectory("./escritos")
-  if general == 0 then
-    print("Not in notes directory")
-  else
-    vim.ui.input({ prompt = "New markdown escrito: " }, function(name)
-      if name then
-        vim.cmd.enew()
-        vim.cmd.normal("O# " .. name)
-        vim.cmd.write("./escritos/" .. name .. ".md")
-        vim.cmd.normal("2o")
-      else
-        vim.api.nvim_err_writeln("No name given. No file created.")
-      end
-    end)
-  end
+  print("New note created: " .. filepath)
 end
 
 function M.save_as()

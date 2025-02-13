@@ -2,7 +2,7 @@ local M = {}
 
 -- Helper function to prompt user input with default value
 function M.prompt_input(prompt, default)
-  local result = vim.fn.input({ prompt = prompt, default = default })
+  local result = vim.fn.input(prompt, default)
   if result == "" then
     return default
   end
@@ -11,7 +11,7 @@ end
 
 -- Helper function to confirm yes/no questions
 function M.confirm(prompt)
-  local choice = vim.fn.confirm(prompt, "&Yes\n&No", 2)
+  local choice = vim.fn.confirm(prompt, "&Yes\n&No")
   return choice == 1
 end
 

@@ -24,14 +24,12 @@ map("n", "<leader>ft", vim.cmd.tabnew, { desc = "New file in a tab", noremap = t
 map("n", "<leader>fn", vim.cmd.enew, { desc = "New file", noremap = true, silent = true })
 map("n", "<leader>fm", ff.new_named_file, { desc = "New named file", noremap = true, silent = true })
 map("n", "<leader>fa", ff.save_as, { desc = "Save as", noremap = true, silent = true })
-map("n", "<leader>fop", ff.new_personal, { desc = "New personal note", noremap = true, silent = true })
-map(
-  "n",
-  "<leader>fog",
-  ff.create_general_note,
-  { desc = "New note in general directory", noremap = true, silent = true }
-)
-map("n", "<leader>foe", ff.new_writing, { desc = "New note in escritos directory", noremap = true, silent = true })
+map("n", "<leader>fog", function()
+  ff.create_note("./general/")
+end, { desc = "New note in general directory", noremap = true, silent = true })
+map("n", "<leader>foe", function()
+  ff.create_note("./escritos/")
+end, { desc = "New note in escritos directory", noremap = true, silent = true })
 
 -- ╭─────────────────────────────────────────────╮
 -- │ Buffer and splits management and navigation │
