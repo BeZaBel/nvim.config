@@ -153,6 +153,15 @@ M.keys = {
     require("telescope.builtin").resume,
     desc = "Search resume",
   },
+  {
+    "<leader>en",
+    function()
+      require("telescope.builtin").find_files({
+        cwd = vim.fn.stdpath("config"),
+      })
+    end,
+    desc = "Open config files",
+  },
 }
 
 return M
