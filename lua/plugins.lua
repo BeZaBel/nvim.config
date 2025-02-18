@@ -36,6 +36,9 @@ return {
         "xiyaowong/telescope-emoji.nvim",
         lazy = true,
       },
+      {
+        "nvim-telescope/telescope-symbols.nvim",
+      },
     },
     config = require("setup.telescope").setup,
     keys = require("setup.telescope").keys,

@@ -68,3 +68,6 @@ map("v", "<leader>r", '"hy:%s/<C-r>h//g<left><left>', {
   desc = [[Replace all
 instances of selected word]],
 })
+
+-- Quickfix actions
+map("n", "<leader>cc", "<CMD>cclose<CR>", { desc = "Close Quickfix list" })

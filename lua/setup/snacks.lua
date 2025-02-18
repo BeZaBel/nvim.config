@@ -5,10 +5,12 @@ local cwd = vim.fn.system("pwd")
 M.opts = {
   bigfile = { enabled = true },
   bufdelete = { enabled = false },
+  image = {},
+  animate = {},
   notifier = {
     enabled = true,
     timeout = 3000,
-    style = "minimal",
+    style = "scratch",
   },
   quickfile = { enabled = true },
   statuscolumn = {
@@ -134,6 +136,13 @@ M.opts = {
 }
 
 M.keys = {
+  {
+    "<leader>un",
+    function()
+      Snacks.notifier.hide()
+    end,
+    desc = "Hide notification",
+  },
   {
     "<leader>n",
     function()
