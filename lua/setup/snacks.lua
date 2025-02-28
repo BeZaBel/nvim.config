@@ -5,7 +5,7 @@ local cwd = vim.fn.system("pwd")
 M.opts = {
   bigfile = { enabled = true },
   bufdelete = { enabled = false },
-  image = {},
+  -- image = {},
   animate = {},
   notifier = {
     enabled = true,

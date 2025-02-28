@@ -214,6 +214,16 @@ return {
     version = false,
     config = function()
       require("mini.ai").setup()
+      require("mini.map").setup()
     end,
+    keys = {
+      {
+        "<leader>mm",
+        function()
+          MiniMap.toggle()
+        end,
+        desc = "Toggle MiniMap",
+      },
+    },
   },
 }
