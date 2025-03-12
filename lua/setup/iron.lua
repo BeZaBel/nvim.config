@@ -15,8 +15,12 @@ function M.setup()
           command = { "radian" },
         },
         python = {
-          -- command = { "python3" },
-          command = { "ptpython" },
+          -- command = { "python3" }, -- or { "ipython", "--no-autoindent" }
+          -- command = { "/home/azamora/.local/share/python/bin/ptpython3" },
+          command = { "/home/azamora/.local/share/python/bin/ipython", "--no-autoindent" },
+          -- command = { "ptpython" },
+          block_deviders = { "# %%", "# --" },
+          format = require("iron.fts.common").bracketed_paste,
         },
       },
       -- repl_open_cmd = require("iron.view").bottom(10),
@@ -28,6 +32,7 @@ function M.setup()
       send_file = "<leader>rf",
       send_line = "<leader>rl",
       send_mark = "<leader>rm",
+      send_code_block = "<space>rb",
       mark_motion = "<leader>rmc",
       mark_visual = "<leader>rmc",
       remove_mark = "<leader>rmd",

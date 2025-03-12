@@ -151,7 +151,7 @@ M.keys = {
     desc = "Show notifier history",
   },
   {
-    "<leader>g",
+    "<leader>gg",
     function()
       Snacks.lazygit()
     end,
