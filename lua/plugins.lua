@@ -204,11 +204,17 @@ return {
     keys = require("setup.obsidian").keys,
   },
   {
-    "rebelot/kanagawa.nvim",
-    lazy = false,
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
-    config = require("setup.kanagawa").setup,
+    config = require("setup.catppuccin").setup,
   },
+  -- {
+  --   "rebelot/kanagawa.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = require("setup.kanagawa").setup,
+  -- },
   {
     "echasnovski/mini.nvim",
     version = false,
