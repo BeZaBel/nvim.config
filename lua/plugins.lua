@@ -63,6 +63,18 @@ return {
     config = require("setup.cmp").setup,
   },
   {
+    "R-nvim/R.nvim",
+    config = require("setup.r-nvim").setup,
+  },
+  {
+    "quarto-dev/quarto-nvim",
+    dependencies = {
+      "jmbuhr/otter.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = require("setup.quarto").setup,
+  },
+  {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {

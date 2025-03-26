@@ -70,4 +70,4 @@ instances of selected word]],
 })
 
 -- Quickfix actions
-map("n", "<leader>cc", "<CMD>cclose<CR>", { desc = "Close Quickfix list" })
+map("n", "<leader>qf", "<CMD>cclose<CR>", { desc = "Close Quickfix list" })

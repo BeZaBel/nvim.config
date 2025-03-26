@@ -3,21 +3,21 @@
 -- ╰────────────────────╯
 
 -- Set custom highlight groups
-vim.api.nvim_set_hl(0, "StatusBuffer", { fg = "#ffffff", bg = "#2D4F67" })
-vim.api.nvim_set_hl(0, "StatusPath", { fg = "#ffffff", bg = "#16161D" })
-vim.api.nvim_set_hl(0, "StatusLineInfo", { fg = "#000000", bg = "#98BB6C" })
-vim.api.nvim_set_hl(0, "StatusSep1", { fg = "#2D4F67", bg = "#16161D" })
-vim.api.nvim_set_hl(0, "StatusSep2", { fg = "#16161D", bg = "#98BB6C" })
+vim.api.nvim_set_hl(0, "StatusBuffer", { fg = "#eff1f5", bg = "#7287fd" })
+vim.api.nvim_set_hl(0, "StatusPath", { fg = "#eff1f5", bg = "#4c4f69" })
+vim.api.nvim_set_hl(0, "StatusLineInfo", { fg = "#4c4f69", bg = "#eff1f5" })
+vim.api.nvim_set_hl(0, "StatusSep1", { fg = "#7287fd", bg = "#4c4f69" })
+vim.api.nvim_set_hl(0, "StatusSep2", { fg = "#4c4f69", bg = "#eff1f5" })
 
 local function set_status()
   local parts = {
     "%#StatusBuffer#",
     "  : %t %m",
-    "%#StatusSep1#", -- Separator
+    "%#StatusSep1#", -- Separator
     "%=",
     "%#StatusPath#",
     " : %-.50F ",
-    "%#StatusSep2#", -- Separator
+    "%#StatusSep2#", -- Separator
     -- "| ",
     "%#StatusLineInfo#",
     " 󰠷 : %l/%L ",
