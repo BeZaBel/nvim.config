@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup()
   require("catppuccin").setup({
-    flavour = "latte",
+    flavour = "mocha",
     background = {
       light = "latte",
       dark = "mocha",
