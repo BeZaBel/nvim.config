@@ -12,14 +12,12 @@ function M.setup()
           command = { "chez" },
         },
         r = {
-          command = { "radian" },
+          command = "source ~/.venv/bin/activate.fish && radian",
+          block_deviders = { "# %%", "# --", "# ##" },
         },
         python = {
-          -- command = { "python3" }, -- or { "ipython", "--no-autoindent" }
-          -- command = { "/home/azamora/.local/share/python/bin/ptpython3" },
-          command = { "/home/azamora/.local/share/python/bin/ipython", "--no-autoindent" },
-          -- command = { "ptpython" },
-          block_deviders = { "# %%", "# --" },
+          command = "source ~/.venv/bin/activate.fish && ipython --no-autoindent",
+          block_deviders = { "# %%", "# --", "# ##" },
           format = require("iron.fts.common").bracketed_paste,
         },
       },
