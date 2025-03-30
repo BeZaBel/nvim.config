@@ -10,6 +10,7 @@ function M.setup()
       lua = { "stylua" },
       c = { "clang-format" },
       markdown = { "mdslw" },
+      r = { "air" },
     },
     format_on_save = {
       lsp_fallback = true,
