@@ -11,6 +11,7 @@ function M.setup()
       c = { "clang-format" },
       markdown = { "mdslw" },
       r = { "air" },
+      tex = { "llf" },
     },
     format_on_save = {
       lsp_fallback = true,

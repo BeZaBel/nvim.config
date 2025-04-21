@@ -12,6 +12,9 @@ map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map("i", "<C-k>", "<right>", { noremap = true })
 map("i", "<C-j>", "<left>", { noremap = true })
 
+map("i", "\\ital", "\\textit{}<Left>", { desc = "Insert italic text int latex" })
+map("i", "\\sec", "\\section{}<Left>", { desc = "Insert italic text int latex" })
+
 -- ╭─────────────────╮
 -- │ File operations │
 -- ╰─────────────────╯

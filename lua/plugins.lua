@@ -59,6 +59,7 @@ return {
       "rafamadriz/friendly-snippets",
       "onsails/lspkind.nvim",
       "R-nvim/cmp-r",
+      "evesdropper/luasnip-latex-snippets.nvim",
     },
     config = require("setup.cmp").setup,
   },
@@ -159,11 +160,11 @@ return {
     event = "VeryLazy",
     config = require("setup.dressing").setup,
   },
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    ft = "markdown",
-    config = require("setup.rendermarkdown").setup,
-  },
+  -- {
+  --   "MeanderingProgrammer/render-markdown.nvim",
+  --   ft = "markdown",
+  --   config = require("setup.rendermarkdown").setup,
+  -- },
   {
     "HakonHarnes/img-clip.nvim",
     event = "VeryLazy",
